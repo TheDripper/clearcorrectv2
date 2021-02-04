@@ -39,7 +39,7 @@
       </aside>
     </div>
     <div class="wp-block-column bg-white rounded" style="flex:75;">
-      <h2 class="px-4 mt-8"><?php echo wp_count_posts('case')->publish; ?> cases</h2>
+      <h2 id="case-count" class="px-4 mt-8"></h2>
       <?php echo facetwp_display('template', 'cases'); ?>
     </div>
   </div>

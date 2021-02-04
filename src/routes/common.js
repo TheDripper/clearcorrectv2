@@ -19,6 +19,12 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     console.log("common");
+    $(document).on("facetwp-loaded", function () {
+      console.log('facet');
+      var count = $('.facetwp-template').children().length;
+      console.log(count);
+      $('#case-count').text(count + ' cases');
+    });
     if ($("#filter-cases").length) {
       $("#filter-cases").on("change", function (e) {
         var slug = $(this).val();
@@ -27,7 +33,7 @@ export default {
           type: "POST",
           data: {
             action: "filter_cases",
-            slug: slug
+            slug: slug,
           },
           success: function (res) {
             console.log(res);
@@ -38,6 +44,12 @@ export default {
         });
       });
     }
+    
+    $(document).on("keypress", function (e) {
+      if (e.which == 13 && $("#search").is(":focus")) {
+        $(".search-wrap img").trigger("click");
+      }
+    });
     if ($(".edit-img-frame").length) {
       $(".edit-img-frame").on("click", function () {
         $(this).parent().find("input").trigger("click");
