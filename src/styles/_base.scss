@@ -675,18 +675,34 @@ header {
 .treatment-technique {
   column-count: 3;
 }
-input[type="search"] {
-  // box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(230, 234, 238, 1);
-  border-radius: 4px;
-  height: 42px;
-  padding: 0 20px;
-  @apply mb-8;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
 .dataTables_filter {
+  label {
+    font-size: 0;
+  }
+  .patient-dashboard & {
+    @apply hidden;
+  }
+  input[type="search"] {
+    // box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(230, 234, 238, 1);
+    border-radius: 4px;
+    height: 42px;
+    padding: 0 20px;
+    margin-left: 225px;
+    @apply text-body;
+    background: url("/wp-content/themes/template/build/images/Search.svg");
+    background-size: 17px;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    &:focus {
+      background: none;
+    }
+
+    // @apply mb-8;
+    // position: absolute;
+    // left: 0;
+    // top: 0;
+  }
   @apply relative mb-6;
   height: 42px;
   // &:after {
@@ -837,7 +853,7 @@ input[type="search"] {
 .edit-img-frame {
   @apply relative flex items-center justify-center mr-4 mb-4;
   width: 124px;
-  height: 94px; 
+  height: 94px;
   overflow: hidden;
   cursor: pointer;
   img {
@@ -851,5 +867,16 @@ input[type="search"] {
       left: 0;
       bottom: 0;
     }
+  }
+}
+#filter-cases {
+  height: 42px;
+  width: 211px;
+  @apply flex items-center;
+}
+.datatable {
+  th, td {
+    text-align: left; 
+    @apply px-0;
   }
 }

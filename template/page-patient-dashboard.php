@@ -17,7 +17,7 @@ $cases = get_posts($args);
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6">
-          <div class="flex justify-between w-full items-center">
+          <div class="flex justify-between w-full items-center mb-6">
             <h2 class="text-pink mb-6">Dashboard</h2>
             <a class="button p-2 invert min-w-0" href="/patient-submission">CREATE SUBMISSION</a>
           </div>
@@ -29,8 +29,7 @@ $cases = get_posts($args);
                 <tr>
                   <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Submission ID</th>
                   <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Date Submitted</th>
-                  <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Patient</th>
-                  <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Classification</th>
+                  <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Title</th>
                   <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Status</th>
                   <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Action</th>
                 </tr>
@@ -40,12 +39,11 @@ $cases = get_posts($args);
                   <?php $id = $case->ID; ?>
                   <?php $patient = wp_get_post_terms($id, 'gender')[0]->name . get_field('age', $id); ?>
                   <tr class="border-b border-border-grey">
-                    <td class="p-4 text-center"><?php echo $id; ?></td>
-                    <td class="p-4 text-center"><?php echo $case->post_date; ?></td>
-                    <td class="p-4 text-center"><?php echo $patient; ?></td>
-                    <td class="p-4 text-center"><?php echo wp_get_post_terms($id, 'classification')[0]->name; ?></td>
-                    <td class="p-4 text-center"><?php echo $case->post_status; ?></td>
-                    <td class="p-4 text-center"><a class="text-sm mx-2" href="/patient-edit?id=<?php echo $id; ?>">EDIT</a>|<a class="text-sm mx-2 delete" href="/submission-delete?id=<?php echo $id; ?>">DELETE</a>
+                    <td class="py-4"><?php echo $id; ?></td>
+                    <td class="py-4"><?php echo $case->post_date; ?></td>
+                    <td class="py-4"><?php echo $case->post_title; ?></td>
+                    <td class="py-4"><?php echo $case->post_status; ?></td>
+                    <td class="py-4"><a class="text-sm mx-2" href="/patient-edit?id=<?php echo $id; ?>">EDIT</a>|<a class="text-sm mx-2 delete" href="/submission-delete?id=<?php echo $id; ?>">DELETE</a>
                       <div class="modal message p-8">
                         <div class="flex flex-col justify-center text-center">
                           <p class="text-xl">Are you sure you want to delete the following submission?</p>

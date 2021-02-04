@@ -19,7 +19,11 @@ $cases = get_posts($args);
         <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6">
           <div class="flex justify-between w-full items-center">
             <h2 class="text-pink mb-6">Dashboard</h2>
-            <select id="filter-cases">
+
+            <a class="button p-2 invert min-w-0" href="/doctor-submission">CREATE SUBMISSION</a>
+          </div>
+          <div class="select relative">
+            <select id="filter-cases" class="border border-border-grey rounded px-2 absolute z-10">
               <?php foreach (get_terms('gender', array('hide_empty' => false)) as $term) : ?>
                 <option value="<?php echo $term->slug; ?>" data-tax="<?php echo 'gender'; ?>"><?php echo $term->name; ?></option>
               <?php endforeach; ?>
@@ -27,7 +31,6 @@ $cases = get_posts($args);
                 <option><?php echo $term->name; ?></option>
               <?php endforeach; ?>
             </select>
-            <a class="button p-2 invert min-w-0" href="/doctor-submission">CREATE SUBMISSION</a>
           </div>
           <div class="table-wrap">
             <table class="datatable w-full">

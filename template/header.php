@@ -17,9 +17,9 @@
       </div>
     </div>
     <nav class="flex justify-between items-center py-2 m-0 w-full max-w-6xl relative z-10 w-full max-w-6xl mx-auto">
-      <a href="/stories">Case Gallery</a>
-      <div class="w-1/3 flex justify-between items-start self-start">
-        <div class="search-wrap relative">
+      <a href="/cases">Case Gallery</a>
+      <div class="flex justify-between items-start self-start">
+        <div class="search-wrap relative mr-6">
           <?php if (is_page('search')) : ?>
             <?php echo facetwp_display('facet', 'search_bar'); ?>
           <?php else : ?>
