@@ -9,8 +9,9 @@
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <div class="doctor-login bg-white my-12 max-w-6xl mx-auto py-12">
             <h2 class="text-pink text-center mb-16">Patient Login</h2>
+            <?php $redirect = get_site_url().'/patient-dashboard'; ?>
             <?php wp_login_form(array(
-              'redirect'=>'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com/patient-dashboard'
+              'redirect'=>$redirect
             )); ?>
           </div>
         </article>

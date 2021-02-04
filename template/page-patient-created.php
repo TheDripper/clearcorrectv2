@@ -7,8 +7,6 @@
     'role'=>'contributor'
   ));
 ?>
-<?php var_dump($created); ?>
-<?php var_dump(get_user_by('id',$created)); ?>
 <main role="main" aria-label="Content" class="bg-back-grey py-8">
   <!-- section -->
   <section>

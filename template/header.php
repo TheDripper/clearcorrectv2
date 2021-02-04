@@ -32,14 +32,17 @@
             <li><a href="/doctor-dashboard"><?php echo wp_get_current_user()->user_login; ?></a></li>
             <li><a href="/doctor-dashboard">Dashboard</a></li>
             <li><a href="/doctor-messages">Messages</a></li>
-            <li><a href="/logout">Sign Out</a></li>
+            <?php $logout = get_site_url(); ?>
+            <li><a href="<?php echo wp_logout_url($logout); ?>">Log out</a></li>
+
           </ul>
         <?php elseif (current_user_can('contributor')) : ?>
           <ul class="logged-in-dropdown">
             <li><a href="/patient-dashboard"><?php echo wp_get_current_user()->user_login; ?></a></li>
             <li><a href="/patient-dashboard">Dashboard</a></li>
             <li><a href="/patient-messages">Messages</a></li>
-            <li><a href="/logout">Sign Out</a></li>
+            <?php $logout = get_site_url(); ?>
+            <li><a href="<?php echo wp_logout_url($logout); ?>">Log out</a></li>
           </ul>
         <?php else : ?>
           <ul class="flex">

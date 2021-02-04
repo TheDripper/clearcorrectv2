@@ -37,9 +37,11 @@ if (!function_exists('wp_handle_upload')) {
                 <textarea name="post_message"></textarea>
                 <div class="flex items-center max-w-4xl mx-auto avatar mt-8">
                   <?php
-                    $photo = get_template_directory_uri() . '/build/images/before-after.jpg';
+                  $photo = get_template_directory_uri() . '/build/images/before-after.jpg';
                   ?>
-                  <img src="<?php echo $photo; ?>" />
+                  <div class="edit-img-frame">
+                    <img src="<?php echo $photo; ?>" />
+                  </div>
                   <div class="flex flex-col">
                     <label class="text-h5-grey uppercase text-xs font-bold flex justify-between">Before / After Image<a href="#" class="modal-link text-xs font-body">What is this?</a></label>
                     <div class="modal">
