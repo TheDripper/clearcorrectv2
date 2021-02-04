@@ -19,10 +19,29 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     console.log("common");
-    $('.search-wrap img').on('click',function(){
-      var search = $('#search').val();
+    if ($(".edit-img-frame").length) {
+      $(".edit-img-frame").on("click", function () {
+        $(this).parent().find("input").trigger("click");
+      });
+      $('input[type="file"]').on("change", function () {
+        var input = this;
+        console.log(input);
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          console.log(input);
+          reader.onload = function (e) {
+            var img = $(input).parent().parent().find("img");
+            img.attr("src", e.target.result);
+            img.parent().addClass("edit");
+          };
+          reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+      });
+    }
+    $(".search-wrap img").on("click", function () {
+      var search = $("#search").val();
       console.log(search);
-      window.location.href = "/search?_search_bar="+search
+      window.location.href = "/search?_search_bar=" + search;
     });
     if ($(".saves").length) {
       $(".saves .save").on("click", function () {
@@ -34,15 +53,15 @@ export default {
           type: "POST",
           data: {
             action: "add_save",
-            id:id
+            id: id,
           },
           success: function (res) {
             console.log(res);
-            $saves.find('p').text('SAVES: '+res);
-            $saves.find('img').first().css('opacity','1');
-            $saves.find('img').first().css('pointerEvents','auto');
-            $saves.find('img').last().css('opacity','0');
-            $saves.find('img').last().css('pointerEvents','none');
+            $saves.find("p").text("SAVES: " + res);
+            $saves.find("img").first().css("opacity", "1");
+            $saves.find("img").first().css("pointerEvents", "auto");
+            $saves.find("img").last().css("opacity", "0");
+            $saves.find("img").last().css("pointerEvents", "none");
           },
         });
       });
@@ -54,16 +73,16 @@ export default {
           type: "POST",
           data: {
             action: "drop_save",
-            id:id
+            id: id,
           },
           success: function (res) {
-            console.log('drop');
+            console.log("drop");
             console.log(res);
-            $saves.find('p').text('SAVES: '+res);
-            $saves.find('img').first().css('opacity','0');
-            $saves.find('img').first().css('pointerEvents','none');
-            $saves.find('img').last().css('opacity','1');
-            $saves.find('img').last().css('pointerEvents','auto');
+            $saves.find("p").text("SAVES: " + res);
+            $saves.find("img").first().css("opacity", "0");
+            $saves.find("img").first().css("pointerEvents", "none");
+            $saves.find("img").last().css("opacity", "1");
+            $saves.find("img").last().css("pointerEvents", "auto");
           },
         });
       });

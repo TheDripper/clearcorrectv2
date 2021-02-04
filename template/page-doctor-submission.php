@@ -12,6 +12,9 @@ if (!function_exists('wp_handle_upload')) {
   <section>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+      <div class="modals">
+        <?php the_content(); ?>
+      </div>
         <?php if ($_POST['technical_condition']) {
           wp_set_object_terms(get_the_ID(), $_POST['techinical_condition'], 'technical_condition');
         } ?>

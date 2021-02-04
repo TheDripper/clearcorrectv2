@@ -18902,6 +18902,78 @@ input[type="search"] {
   z-index: 2;
 }
 
+.doctor-submission .featherlight-content {
+  background: none !important;
+  padding: 0 !important;
+}
+
+.doctor-submission .featherlight-content .modal {
+  background: white;
+  padding: 60px;
+  margin-bottom: 60px;
+}
+
+.doctor-submission .featherlight-content .modal p {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.doctor-submission .modal {
+  margin: 0px;
+  position: relative;
+}
+
+.featherlight-close {
+  font-size: 0;
+  width: 32px !important;
+  height: 32px !important;
+  top: 32px !important;
+  right: 32px !important;
+  background: url("/wp-content/themes/template/build/images/Close.svg") !important;
+  background-size: cover !important;
+}
+
+.edit-img-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 124px;
+  height: 94px;
+  overflow: hidden;
+}
+
+.edit-img-frame img {
+  margin: 0px;
+}
+
+.edit-img-frame.edit:after {
+  content: "EDIT";
+  font-family: Thesans-reg;
+  font-size: .75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  position: absolute;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(43, 48, 52, var(--tw-text-opacity));
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  left: 0;
+  bottom: 0;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

@@ -23,7 +23,7 @@ function resolveApp(relativePath) {
 
 const paths = {
   appSrc: resolveApp('src'),
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp('template/build'),
   appIndexJs: resolveApp('src/index.js'),
   appNodeModules: resolveApp('node_modules'),
 };
@@ -132,10 +132,10 @@ module.exports = {
       new BrowserSyncPlugin({
         notify: false,
         host: 'localhost',
-        port: 4000,
+        port: 5000,
         logLevel: 'silent',
         files: ['./template/*.php'],
-        proxy: 'http://localhost:9009/',
+        proxy: 'http://clearcorrect.local/',
       }),
   ].filter(Boolean),
 };

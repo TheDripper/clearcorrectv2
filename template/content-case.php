@@ -12,7 +12,7 @@
           <?php $user = get_current_user_id(); ?>
           <?php $saved = json_decode(get_field('saved', 'user_' . $user)); ?>
           <?php $saved = json_decode(json_encode($saved),true); ?>
-          <?php if (in_array($id, $saved)) : ?>
+          <?php if ($saved && in_array($id, $saved)) : ?>
             <img class="drop-save ml-2" src="<?php echo get_template_directory_uri() . '/build/images/HeartActive.svg '; ?>" />
             <img class="absolute ml-2 save" style="opacity:0;pointer-events:none;" src="<?php echo get_template_directory_uri() . '/build/images/Heart.svg '; ?>" />
           <?php else : ?>

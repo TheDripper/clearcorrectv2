@@ -7,7 +7,7 @@
   // 'user_number'=>$_POST['user-number'],
   'first_name'=>$_POST['first_name'],
   'last_name'=>$_POST['last_name'],
-  'role'=>'contributor',
+  'role'=>'author',
   'display_name'=>$display_name
 ); ?>
 <?php 

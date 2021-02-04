@@ -20,7 +20,7 @@
             <div class="flex items-center justify-end w-full py-2">
               <div class="saves flex relative" data-id="<?php the_ID(); ?>">
                 <p class="flex">SAVES: <?php echo get_field('saves'); ?></p>
-                <?php if (in_array($id, $saved)) : ?>
+                <?php if ($saved && in_array($id, $saved)) : ?>
                   <img class="drop-save ml-2" src="<?php echo get_template_directory_uri() . '/build/images/HeartActive.svg '; ?>" />
                   <img class="absolute ml-2 save" style="opacity:0;pointer-events:none;" src="<?php echo get_template_directory_uri() . '/build/images/Heart.svg '; ?>" />
                 <?php else : ?>
@@ -49,11 +49,13 @@
                     </div>
                   </div>
                   <div class="thumbs flex justify-start items-center ml-2" style="flex: 16.66666%">
-                    <?php foreach (get_field('case_images') as $case_image) : ?>
-                      <div class="case-image flex items-center mx-1 rounded">
-                        <img src="<?php echo $case_image['url']; ?>" />
-                      </div>
-                    <?php endforeach; ?>
+                    <?php if (get_field('case_images')) : ?>
+                      <?php foreach (get_field('case_images') as $case_image) : ?>
+                        <div class="case-image flex items-center mx-1 rounded">
+                          <img src="<?php echo $case_image['url']; ?>" />
+                        </div>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                   </div>
                 </div>
                 <div class="resources p-4">
@@ -210,9 +212,11 @@
                 </div>
                 <label class="text-h5-grey uppercase text-xs font-bold">Clinical Conditions</label>
                 <ul class="list">
-                  <?php foreach ($conditions as $condition) : ?>
-                    <li><?php echo $condition->name; ?>
-                    <?php endforeach; ?>
+                  <?php if ($conditions) : ?>
+                    <?php foreach ($conditions as $condition) : ?>
+                      <li><?php echo $condition->name; ?>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
                 <?php if (get_field('doctor')) : ?>
                   <div class="doctor-card border border-grey rounded mt-6">
