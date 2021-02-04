@@ -18952,6 +18952,7 @@ input[type="search"] {
   width: 124px;
   height: 94px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .edit-img-frame img {

@@ -19,6 +19,25 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     console.log("common");
+    if ($("#filter-cases").length) {
+      $("#filter-cases").on("change", function (e) {
+        var slug = $(this).val();
+        $.ajax({
+          url: wp.ajax.settings.url,
+          type: "POST",
+          data: {
+            action: "filter_cases",
+            slug: slug
+          },
+          success: function (res) {
+            console.log(res);
+            $(".table-wrap").empty();
+            $(".table-wrap").append(res);
+            $(".table-wrap .datatable").dataTable();
+          },
+        });
+      });
+    }
     if ($(".edit-img-frame").length) {
       $(".edit-img-frame").on("click", function () {
         $(this).parent().find("input").trigger("click");
