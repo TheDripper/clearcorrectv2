@@ -4,9 +4,9 @@ global $post;
 // var_dump($doctor);
 $post = $doctor;
 ?>
-<div class="flex p-6">
+<div class="flex p-6 relative">
+  <a class="absolute w-full h-full t-0 l-0" href="<?php the_permalink(); ?>"></a>
   <div class="doctor-photo flex flex-col justify-start items-center">
-
     <?php the_post_thumbnail(); ?>
   </div>
   <div class="doctor-contact ml-6 w-full">
@@ -14,9 +14,7 @@ $post = $doctor;
     <div class="wp-block-columns">
       <div class="wp-block-column" style="flex:50%;">
         <label class="text-h5-grey uppercase text-xs font-bold">Location</label>
-        <address>
           <?php the_field('location'); ?>
-        </address>
       </div>
       <div class="wp-block-column" style="flex:50%;">
         <label class="text-h5-grey uppercase text-xs font-bold">Contact</label>

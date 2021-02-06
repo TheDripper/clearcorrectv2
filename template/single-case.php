@@ -43,16 +43,16 @@
                   <div class="active flex items-center justify-start mb-6">
                     <div class="wp-block-group before-after-slider">
                       <div class="wp-block-group__inner-container">
-                        <figure class="wp-block-image size-full is-resized"><img loading="lazy" src="http://localhost:9009/wp-content/uploads/2021/01/before_single-1.png" alt="" class="wp-image-60" width="592" height="392"></figure>
-                        <figure class="wp-block-image size-full is-resized"><img loading="lazy" src="http://localhost:9009/wp-content/uploads/2021/01/after_single.png" alt="" class="wp-image-60" width="592" height="392" style="max-width: none; width: 492px; height: 325.781px;"></figure>
+                        <figure class="wp-block-image size-full is-resized"><img loading="lazy" src="<?php echo get_field('after_image'); ?>" alt="" class="wp-image-60" width="592" height="392"></figure>
+                        <figure class="wp-block-image size-full is-resized"><img loading="lazy" src="<?php echo get_field('before_image'); ?>" alt="" class="wp-image-60" width="592" height="392" style="max-width: none; width: 492px; height: 325.781px;"></figure>
                       </div>
                     </div>
                   </div>
                   <div class="thumbs flex justify-start items-center ml-2" style="flex: 16.66666%">
                     <?php if (get_field('case_images')) : ?>
                       <?php foreach (get_field('case_images') as $case_image) : ?>
-                        <div class="case-image flex items-center mx-1 rounded">
-                          <img src="<?php echo $case_image['url']; ?>" />
+                        <div class="case-image w-1/5 flex items-center mx-2 rounded">
+                          <img class="cursor-pointer" src="<?php echo $case_image['url']; ?>" />
                         </div>
                       <?php endforeach; ?>
                     <?php endif; ?>

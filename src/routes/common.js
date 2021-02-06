@@ -19,11 +19,30 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     console.log("common");
+    if ($("#loginform").length) {
+      $("#loginform").on("submit", function (e) {
+        e.preventDefault();
+        var valid = true;
+        var $form = $(this);
+        $(
+          '#loginform input[type="text"], #loginform input[type="password"]'
+        ).each(function () {
+          $(this).parent().removeClass("error");
+          if (!$(this).val()) {
+            $(this).parent().addClass("error");
+            valid = false;
+          }
+        });
+        if (valid) {
+          $form.off().trigger("submit");
+        }
+      });
+    }
     $(document).on("facetwp-loaded", function () {
-      console.log('facet');
-      var count = $('.facetwp-template').children().length;
+      console.log("facet");
+      var count = $(".facetwp-template").children().length;
       console.log(count);
-      $('#case-count').text(count + ' cases');
+      $("#case-count").text(count + " cases");
     });
     if ($("#filter-cases").length) {
       $("#filter-cases").on("change", function (e) {
@@ -44,7 +63,27 @@ export default {
         });
       });
     }
-    
+    if ($("#cards-filter-cases").length) {
+      $("#cards-filter-cases").on("change", function (e) {
+        var slug = $(this).val();
+        var doctor = $(this).attr('data-doctor');
+        $.ajax({
+          url: wp.ajax.settings.url,
+          type: "POST",
+          data: {
+            action: "cards_filter_cases",
+            slug: slug,
+            doctor: doctor
+          },
+          success: function (res) {
+            console.log(res);
+            $('.facetwp-template').empty();
+            $('.facetwp-template').append(res);
+          }
+        });
+      });
+    }
+
     $(document).on("keypress", function (e) {
       if (e.which == 13 && $("#search").is(":focus")) {
         $(".search-wrap img").trigger("click");
@@ -64,6 +103,25 @@ export default {
             var img = $(input).parent().parent().find("img");
             img.attr("src", e.target.result);
             img.parent().addClass("edit");
+          };
+          reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+      });
+    }
+    if ($(".edit-video-frame").length) {
+      $(".edit-video-frame").on("click", function () {
+        $(this).parent().find("input").trigger("click");
+      });
+      $('input[type="file"]').on("change", function () {
+        var input = this;
+        console.log(input);
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          console.log(input);
+          reader.onload = function (e) {
+            var video = $(input).parent().parent().find("video");
+            video.find('source').attr("src", e.target.result);
+            video.parent().addClass("edit");
           };
           reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
@@ -120,8 +178,13 @@ export default {
     }
     if ($(".logged-in-dropdown").length) {
       $(".logged-in-dropdown").on("click", function () {
-        $(this).toggleClass("open");
+        $(this).parent().toggleClass("open");
       });
+      // $("main *").on("click", function (e) {
+      //   e.stopPropagation();
+      //   console.log($(e.target).parent());
+      //   $(".logged-in-dropdown").parent().removeClass("open");
+      // });
     }
     if ($(".datatable").length) {
       $(".datatable").each(function () {
@@ -168,13 +231,18 @@ export default {
     }
     var grid = document.querySelector(".arrows");
     if ($(".spread").length && visible($(".spread"))) {
-      setTimeout(function () {
-        $(".spread").find(".middle").addClass("bounce-in-1");
-        $(".spread").find(".l1").addClass("bounce-in-2");
-        $(".spread").find(".r1").addClass("bounce-in-2");
-        $(".spread").find(".l2").addClass("bounce-in-3");
-        $(".spread").find(".r2").addClass("bounce-in-3");
-      }, 1000);
+      $(".spread").find(".middle").addClass("bounce-in-1");
+      $(".spread").find(".l1").addClass("bounce-in-2");
+      $(".spread").find(".r1").addClass("bounce-in-2");
+      $(".spread").find(".l2").addClass("bounce-in-3");
+      $(".spread").find(".r2").addClass("bounce-in-3");
+      // setTimeout(function () {
+      //   $(".spread").find(".middle").addClass("bounce-in-1");
+      //   $(".spread").find(".l1").addClass("bounce-in-2");
+      //   $(".spread").find(".r1").addClass("bounce-in-2");
+      //   $(".spread").find(".l2").addClass("bounce-in-3");
+      //   $(".spread").find(".r2").addClass("bounce-in-3");
+      // }, 500);
     }
 
     $(".lazy-fade-1").each(function () {

@@ -13,7 +13,7 @@
           </div>
           <div class="flex flex-col" style="flex:75%;">
             <div class="doctor-details">
-              <h2><?php the_title(); ?></h2>
+              <h2 class="text-pink text-profile-head"><?php the_title(); ?></h2>
               <p><?php the_field('position'); ?></p>
             </div>
             <div class="doctor-contact my-4 w-full">

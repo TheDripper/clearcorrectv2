@@ -16,6 +16,9 @@ $cases = get_posts($args);
   <section>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+      <div class="modal">
+      <?php the_content(); ?>
+      </div>
         <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6">
           <div class="flex justify-between w-full items-center">
             <h2 class="text-pink mb-6">Dashboard</h2>

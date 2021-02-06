@@ -12,9 +12,9 @@ if (!function_exists('wp_handle_upload')) {
   <section>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-      <div class="modals">
-        <?php the_content(); ?>
-      </div>
+        <div class="modals">
+          <?php the_content(); ?>
+        </div>
         <?php if ($_POST['technical_condition']) {
           wp_set_object_terms(get_the_ID(), $_POST['techinical_condition'], 'technical_condition');
         } ?>
@@ -185,23 +185,23 @@ if (!function_exists('wp_handle_upload')) {
               <div class="max-w-4xl mx-auto mt-8">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Clinical Conditions</label>
                 <ul class="technical-condition">
-                <?php foreach (get_terms('technical_condition', array('hide_empty' => false)) as $term) : ?>
-                  <li class="flex items-center">
-                    <input class="mr-2" type="checkbox" name="term_technical_condition[]" value="<?php echo $term->name; ?>" />
-                    <p><?php echo $term->name; ?></p>
-                  </li>
-                <?php endforeach; ?>
+                  <?php foreach (get_terms('technical_condition', array('hide_empty' => false)) as $term) : ?>
+                    <li class="flex items-center">
+                      <input class="mr-2" type="checkbox" name="term_technical_condition[]" value="<?php echo $term->name; ?>" />
+                      <p><?php echo $term->name; ?></p>
+                    </li>
+                  <?php endforeach; ?>
                 </ul>
               </div>
               <div class="max-w-4xl mx-auto mt-12">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Treatment Technique</label>
                 <ul class="treatment-technique">
-                <?php foreach (get_terms('treatment_technique', array('hide_empty' => false)) as $term) : ?>
-                  <li class="flex items-center">
-                    <input class="mr-2" type="checkbox" value="<?php echo $term->name; ?>" name="term_treatment_technique[]" />
-                    <p><?php echo $term->name; ?></p>
-                  </li>
-                <?php endforeach; ?>
+                  <?php foreach (get_terms('treatment_technique', array('hide_empty' => false)) as $term) : ?>
+                    <li class="flex items-center">
+                      <input class="mr-2" type="checkbox" value="<?php echo $term->name; ?>" name="term_treatment_technique[]" />
+                      <p><?php echo $term->name; ?></p>
+                    </li>
+                  <?php endforeach; ?>
                 </ul>
 
               </div>
@@ -280,8 +280,8 @@ if (!function_exists('wp_handle_upload')) {
                       ?>
                       <img src="<?php echo $photo; ?>" />
                       <div class="flex flex-col">
-                        <input type="file" id="before_occlusal_view_of_lower" name="before_occlusal_view_of_lower" accept="image/png, image/jpeg">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of lower</label>
+                        <input type="file" id="before_occlusal_view_of_lower" name="before_occlusal_view_of_lower" accept="image/png, image/jpeg">
                       </div>
                     </div>
                   </div>
@@ -447,6 +447,24 @@ if (!function_exists('wp_handle_upload')) {
                 </div>
 
               </div>
+              <div class="max-w-4xl mx-auto mt-8 flex items-center">
+                <div class="edit-video-frame mr-6 pl-1 <?php echo $edit; ?>">
+                  <video poster="/wp-content/uploads/2021/02/Rectangle.svg">
+                    <source src="<?php echo get_field('treatment_setup'); ?>">
+                  </video>
+                </div>
+                <div class="flex flex-col">
+                  <label class="text-h5-grey uppercase text-xs font-bold flex justify-between mb-2">Treatment Setup Share Link<a href="#" class="modal-link text-xs font-body">What is this?</a></label>
+                  <div class="modal">
+                    <div class="text-center p-12 flex flex-col items-center">
+                      <p>To find the treatment setup share link, sign into your Doctor Portal account at dr.clearcorrect.com. Once signed in, on the “Manage Orders” page, click on the name of the patient to open the “Case details” page.</p>
+                      <p>Scroll down to the Treatment Setup version that was approved and click on the small document icon  to copy the link of the shareable version of the treatment setup.</p>
+                    </div>
+                  </div>
+                  <input type="file" id="treatment_setup" name="treatment_setup" accept="video/m4a, video/mov">
+                </div>
+
+              </div>
               <div class="max-w-4xl mx-auto mt-8">
                 <h3>Radiographs</h3>
                 <div class="wp-block-columns max-w-4xl mx-auto">
@@ -458,8 +476,8 @@ if (!function_exists('wp_handle_upload')) {
                       ?>
                       <img src="<?php echo $photo; ?>" />
                       <div class="flex flex-col">
-                        <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of anterior</label>
-                        <input type="file" id="before_panoramic_x-ray" name="before_panoramic_x-ray" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">Before - Cephalometric X-ray (optional)</label>
+                        <input type="file" id="before_cephalometric_x-ray" name="before_cephalometric_x-ray" accept="image/png, image/jpeg">
                       </div>
                     </div>
                   </div>
@@ -471,8 +489,8 @@ if (!function_exists('wp_handle_upload')) {
                       ?>
                       <img src="<?php echo $photo; ?>" />
                       <div class="flex flex-col">
-                        <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of right lateral</label>
-                        <input type="file" id="before_cephalometric_x-ray" name="before_cephalometric_x-ray" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">Before - Panoramic X-ray (optional)</label>
+                        <input type="file" id="before_panoramic_x-ray" name="before_panoramic_x-ray" accept="image/png, image/jpeg">
                       </div>
                     </div>
                   </div>
@@ -486,8 +504,9 @@ if (!function_exists('wp_handle_upload')) {
                       ?>
                       <img src="<?php echo $photo; ?>" />
                       <div class="flex flex-col">
-                        <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of left lateral</label>
-                        <input type="file" id="after_panoramic_x-ray" name="after_panoramic_x-ray" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">After - Cephalometric X-ray (optional)</label>
+                        <input type="file" id="after_cephalometric_x-ray" name="after_cephalometric_x-ray" accept="image/png, image/jpeg">
+
                       </div>
                     </div>
                   </div>
@@ -499,8 +518,9 @@ if (!function_exists('wp_handle_upload')) {
                       ?>
                       <img src="<?php echo $photo; ?>" />
                       <div class="flex flex-col">
-                        <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of upper</label>
-                        <input type="file" id="after_cephalometric_x-ray" name="after_cephalometric_x-ray" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">After - Panoramic X-ray (optional)</label>
+                        <input type="file" id="after_panoramic_x-ray" name="after_panoramic_x-ray" accept="image/png, image/jpeg">
+
                       </div>
                     </div>
                   </div>

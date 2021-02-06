@@ -9,10 +9,18 @@
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <div class="doctor-login bg-white my-12 max-w-6xl mx-auto py-12">
             <h2 class="text-pink text-center mb-16">Doctor Login</h2>
-            <?php $url = get_site_url().'/doctor-dashboard'; ?>
+            <?php $url = get_site_url() . '/doctor-dashboard'; ?>
             <?php wp_login_form(array(
-              'redirect'=>$url
+              'redirect' => $url,
+              'label_username' => __('Email Address'),
+              'label_remember' => __('Remember my login information'),
+              'remember' => true
             )); ?>
+            <ul class="text-center mx-auto">
+              <li class="mb-4"><a href="<?php echo wp_lostpassword_url(get_site_url()); ?>">I forgot my password</a></li>
+              <li class="mb-4"><a href="/doctor-register">Create an account</a></li>
+              <li class="mb-4"><a href="/patient-login">Switch to patient login</a></li>
+            </ul>
           </div>
         </article>
 

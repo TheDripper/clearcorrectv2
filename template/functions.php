@@ -670,7 +670,7 @@ function cc_mime_types($mimes)
   $mimes['svg'] = 'image/svg+xml';
   return $mimes;
 }
-// add_filter('upload_mimes', 'cc_mime_types');
+add_filter('upload_mimes', 'cc_mime_types');
 // function my_acf_init() {
 
 // 	acf_update_setting('google_api_key', 'AIzaSyCttO3DiKRKOeTdh0MNVbFjC2xs46ECs_8');
@@ -838,8 +838,61 @@ function filter_cases()
       <?php endforeach; ?>
     </tbody>
   </table>
-<?php
+  <?php
   wp_die();
 }
 add_action('wp_ajax_nopriv_filter_cases', 'filter_cases');
 add_action('wp_ajax_filter_cases', 'filter_cases');
+add_action('wp_login_failed', 'my_front_end_login_fail');  // hook failed login
+
+function my_front_end_login_fail($username)
+{
+  $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+  // if there's a valid referrer, and it's not the default log-in screen
+  if (!empty($referrer) && !strstr($referrer, 'wp-login') && !strstr($referrer, 'wp-admin')) {
+    $redirect = '';
+    if (strpos($referrer, 'patient') !== false) {
+      $redirect = '/patient-login?failed=true';
+    }
+    if (strpos($referrer, 'doctor') !== false) {
+      $redirect = '/doctor-login?failed=true';
+    }
+    wp_redirect($referrer . $redirect);  // let's append some information (login=failed) to the URL for the theme to use
+    exit;
+  }
+}
+function cards_filter_cases()
+{
+  $doctor = $_POST['doctor'];
+  $current_user = wp_get_current_user();
+  $gender = (array) get_terms('gender', array('hide_empty' => false))[0];
+  $classification = (array) get_terms('classification', array('hide_empty' => false))[0];
+  $tax = '';
+  if (in_array($_POST["slug"], $gender, true)) $tax = 'gender';
+  if (in_array($_POST["slug"], $classification, true)) $tax = 'classification';
+  $args = array(
+    'post_type' => 'case',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'meta_key' => 'doctor',
+    'meta_value' => $doctor,
+    'post_status' => 'any',
+    'tax_query' => array(
+      array(
+        'taxonomy' => $tax,
+        'field'    => 'slug',
+        'terms'    => $_POST['slug']
+      )
+    )
+  );
+  global $post;
+  $q = new WP_Query($args);
+  while ($q->have_posts()) : $q->the_post() ?>
+    <?php get_template_part('content', 'case'); ?>
+<?php
+  endwhile;
+  wp_reset_postdata();
+  wp_die();
+}
+add_action('wp_ajax_nopriv_cards_filter_cases', 'cards_filter_cases');
+add_action('wp_ajax_cards_filter_cases', 'cards_filter_cases');

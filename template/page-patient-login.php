@@ -9,10 +9,21 @@
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
           <div class="doctor-login bg-white my-12 max-w-6xl mx-auto py-12">
             <h2 class="text-pink text-center mb-16">Patient Login</h2>
-            <?php $redirect = get_site_url().'/patient-dashboard'; ?>
+            <?php $redirect = get_site_url() . '/patient-dashboard'; ?>
+            <?php if($_GET['failed']): ?>
+              <p class="font-body mb-8 text-pink text-center">Sorry, this is not a valid username/password pair. Please click the link below if you need to reset.</p>
+              <?php endif;  ?>
             <?php wp_login_form(array(
-              'redirect'=>$redirect
+              'redirect' => $redirect,
+              'label_username' => __('Email Address'),
+              'label_remember' => __('Remember my login information'),
+              'remember' => true
             )); ?>
+            <ul class="text-center mx-auto">
+              <li class="mb-4"><a href="<?php echo wp_lostpassword_url(get_site_url()); ?>">I forgot my password</a></li>
+              <li class="mb-4"><a href="/patient-register">Create an account</a></li>
+              <li class="mb-4"><a href="/doctor-login">Switch to doctor login</a></li>
+            </ul>
           </div>
         </article>
 

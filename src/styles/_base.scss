@@ -575,6 +575,17 @@ header {
   max-width: 16.666%;
   height: 50px;
   overflow: hidden;
+  transition: all 0.2s linear;
+  img {
+    transition: border-color 0.1s linear;
+    border: 2px solid transparent;
+    @apply rounded;
+  }
+  &:hover {
+    img {
+      border: 2px solid $link-green;
+    }
+  }
 }
 .active {
   width: 450px;
@@ -585,8 +596,13 @@ header {
   overflow: hidden;
 }
 .doctor-photo {
+  width: 104px;
+  height: 156px;
+  overflow: hidden;
   img {
-    max-width: 104px;
+    max-width: none;
+    width: auto;
+    height: 100%;
   }
 }
 .doctor-card {
@@ -666,6 +682,9 @@ header {
   }
 }
 .avatar {
+  label {
+    @apply mb-2;
+  }
   img {
     max-width: 130px;
     @apply mb-6 mr-6;
@@ -779,6 +798,7 @@ header {
 }
 .logged-in-dropdown {
   @apply rounded bg-white;
+  border: 1px solid transparent;
   height: 40px;
   max-height: 40px;
   overflow: hidden;
@@ -786,14 +806,7 @@ header {
     pointer-events: none;
     text-decoration: none;
   }
-  &.open {
-    @apply border border-border-grey;
-    height: auto;
-    max-height: 200px;
-    a {
-      pointer-events: auto;
-    }
-  }
+
   li {
     height: 40px;
     @apply flex items-center;
@@ -803,6 +816,18 @@ header {
     a {
       @apply p-4;
       text-decoration: none;
+    }
+  }
+}
+.open {
+  @apply self-start;
+  margin-top: 2px;
+  .logged-in-dropdown {
+    @apply border border-border-grey;
+    height: auto;
+    max-height: 200px;
+    a {
+      pointer-events: auto;
     }
   }
 }
@@ -820,6 +845,9 @@ header {
   .save {
     @apply relative;
     z-index: 2;
+  }
+  img {
+    cursor: pointer;
   }
 }
 .doctor-submission {
@@ -875,8 +903,40 @@ header {
   @apply flex items-center;
 }
 .datatable {
-  th, td {
-    text-align: left; 
+  th,
+  td {
+    text-align: left;
     @apply px-0;
+  }
+}
+.doctor-dashboard {
+  .featherlight-content {
+    .details-tablet-img img {
+      max-width: 600px;
+    }
+    padding: 0;
+    border: none !important;
+    .wp-block-columns {
+      margin: 0;
+    }
+  }
+}
+.login-remember {
+  @apply relative;
+  label {
+    @apply font-body text-sm;
+    text-transform: none !important;
+    color: #36393a;
+  }
+}
+.error {
+  @apply relative;
+  &:after {
+    content: "Please enter a value for this field";
+    color: $pink;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 14px;
   }
 }

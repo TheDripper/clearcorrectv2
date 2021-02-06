@@ -31,6 +31,7 @@ module.exports = {
       "6xl": "4rem",
       "7xl": "5rem",
       head: "50px",
+      "profile-head": "40px",
       "sub-head": "30px",
       body: "18px",
     },

@@ -538,6 +538,24 @@
                 </div>
 
               </div>
+              <div class="max-w-4xl mx-auto mt-8 flex items-center">
+                <div class="edit-video-frame mr-6 pl-1 <?php echo $edit; ?>">
+                  <video autoplay muted poster="/wp-content/uploads/2021/02/Rectangle.svg">
+                    <source src="<?php echo get_field('treatment_setup',$case->ID); ?>">
+                  </video>
+                </div>
+                <div class="flex flex-col">
+                  <label class="text-h5-grey uppercase text-xs font-bold flex justify-between mb-2">Treatment Setup Share Link<a href="#" class="modal-link text-xs font-body">What is this?</a></label>
+                  <div class="modal">
+                    <div class="text-center p-12 flex flex-col items-center">
+                      <p>To find the treatment setup share link, sign into your Doctor Portal account at dr.clearcorrect.com. Once signed in, on the “Manage Orders” page, click on the name of the patient to open the “Case details” page.</p>
+                      <p>Scroll down to the Treatment Setup version that was approved and click on the small document icon to copy the link of the shareable version of the treatment setup.</p>
+                    </div>
+                  </div>
+                  <input type="file" id="treatment_setup" name="treatment_setup" accept="video/m4a, video/mov">
+                </div>
+
+              </div>
               <div class="max-w-4xl mx-auto mt-8">
                 <h3>Radiographs</h3>
                 <div class="wp-block-columns max-w-4xl mx-auto">

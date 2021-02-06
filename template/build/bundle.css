@@ -4259,6 +4259,10 @@ h4 {
   font-size: 50px !important;
 }
 
+.text-profile-head {
+  font-size: 40px !important;
+}
+
 .text-sub-head {
   font-size: 30px !important;
 }
@@ -18560,6 +18564,21 @@ header .logo-cont {
   max-width: 16.666%;
   height: 50px;
   overflow: hidden;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.case-image img {
+  -webkit-transition: border-color 0.1s linear;
+  -o-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
+  border: 2px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.case-image:hover img {
+  border: 2px solid #13C9B1;
 }
 
 .active {
@@ -18582,8 +18601,16 @@ header .logo-cont {
   overflow: hidden;
 }
 
+.doctor-photo {
+  width: 104px;
+  height: 156px;
+  overflow: hidden;
+}
+
 .doctor-photo img {
-  max-width: 104px;
+  max-width: none;
+  width: auto;
+  height: 100%;
 }
 
 .doctor-card {
@@ -18673,6 +18700,10 @@ header .logo-cont {
   --tw-text-opacity: 1;
   color: rgba(151, 151, 151, var(--tw-text-opacity));
   text-transform: uppercase;
+}
+
+.avatar label {
+  margin-bottom: 0.5rem;
 }
 
 .avatar img {
@@ -18851,6 +18882,7 @@ header .logo-cont {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   border-radius: 0.25rem;
+  border: 1px solid transparent;
   height: 40px;
   max-height: 40px;
   overflow: hidden;
@@ -18859,18 +18891,6 @@ header .logo-cont {
 .logged-in-dropdown a {
   pointer-events: none;
   text-decoration: none;
-}
-
-.logged-in-dropdown.open {
-  --tw-border-opacity: 1;
-  border-color: rgba(230, 234, 238, var(--tw-border-opacity));
-  border-width: 1px;
-  height: auto;
-  max-height: 200px;
-}
-
-.logged-in-dropdown.open a {
-  pointer-events: auto;
 }
 
 .logged-in-dropdown li {
@@ -18890,6 +18910,24 @@ header .logo-cont {
 .logged-in-dropdown li a {
   padding: 1rem;
   text-decoration: none;
+}
+
+.open {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 2px;
+}
+
+.open .logged-in-dropdown {
+  --tw-border-opacity: 1;
+  border-color: rgba(230, 234, 238, var(--tw-border-opacity));
+  border-width: 1px;
+  height: auto;
+  max-height: 200px;
+}
+
+.open .logged-in-dropdown a {
+  pointer-events: auto;
 }
 
 .new-feather {
@@ -18914,6 +18952,10 @@ header .logo-cont {
 .saves .save {
   position: relative;
   z-index: 2;
+}
+
+.saves img {
+  cursor: pointer;
 }
 
 .doctor-submission .featherlight-content {
@@ -19000,10 +19042,51 @@ header .logo-cont {
           align-items: center;
 }
 
-.datatable th, .datatable td {
+.datatable th,
+.datatable td {
   text-align: left;
+}
+
+.datatable th, .datatable td {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.doctor-dashboard .featherlight-content {
+  padding: 0;
+  border: none !important;
+}
+
+.doctor-dashboard .featherlight-content .details-tablet-img img {
+  max-width: 600px;
+}
+
+.doctor-dashboard .featherlight-content .wp-block-columns {
+  margin: 0;
+}
+
+.login-remember {
+  position: relative;
+}
+
+.login-remember label {
+  font-family: Thesans-reg;
+  font-size: .8889rem;
+  text-transform: none !important;
+  color: #36393a;
+}
+
+.error {
+  position: relative;
+}
+
+.error:after {
+  content: "Please enter a value for this field";
+  color: #FB5373;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 14px;
 }
 
 @media (min-width: 640px) {
@@ -22612,6 +22695,10 @@ header .logo-cont {
 
   .sm\:text-head {
     font-size: 50px !important;
+  }
+
+  .sm\:text-profile-head {
+    font-size: 40px !important;
   }
 
   .sm\:text-sub-head {
@@ -39584,6 +39671,10 @@ header .logo-cont {
     font-size: 50px !important;
   }
 
+  .md\:text-profile-head {
+    font-size: 40px !important;
+  }
+
   .md\:text-sub-head {
     font-size: 30px !important;
   }
@@ -56552,6 +56643,10 @@ header .logo-cont {
 
   .lg\:text-head {
     font-size: 50px !important;
+  }
+
+  .lg\:text-profile-head {
+    font-size: 40px !important;
   }
 
   .lg\:text-sub-head {
@@ -73524,6 +73619,10 @@ header .logo-cont {
     font-size: 50px !important;
   }
 
+  .xl\:text-profile-head {
+    font-size: 40px !important;
+  }
+
   .xl\:text-sub-head {
     font-size: 30px !important;
   }
@@ -90492,6 +90591,10 @@ header .logo-cont {
 
   .\32xl\:text-head {
     font-size: 50px !important;
+  }
+
+  .\32xl\:text-profile-head {
+    font-size: 40px !important;
   }
 
   .\32xl\:text-sub-head {

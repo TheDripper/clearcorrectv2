@@ -18688,21 +18688,35 @@ header .logo-cont {
           column-count: 3;
 }
 
-input[type="search"] {
-  border: 1px solid #e6eaee;
-  border-radius: 4px;
-  height: 42px;
-  padding: 0 20px;
-  margin-bottom: 2rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
 .dataTables_filter {
   margin-bottom: 1.5rem;
   position: relative;
   height: 42px;
+}
+
+.dataTables_filter label {
+  font-size: 0;
+}
+
+.patient-dashboard .dataTables_filter {
+  display: none;
+}
+
+.dataTables_filter input[type="search"] {
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  height: 42px;
+  padding: 0 20px;
+  margin-left: 225px;
+  font-size: 18px;
+  background: url("/wp-content/themes/template/build/images/Search.svg");
+  background-size: 17px;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.dataTables_filter input[type="search"]:focus {
+  background: none;
 }
 
 .paginate_button {
@@ -18900,6 +18914,115 @@ input[type="search"] {
 .saves .save {
   position: relative;
   z-index: 2;
+}
+
+.doctor-submission .featherlight-content {
+  background: none !important;
+  padding: 0 !important;
+}
+
+.doctor-submission .featherlight-content .modal {
+  background: white;
+  padding: 60px;
+  margin-bottom: 60px;
+}
+
+.doctor-submission .featherlight-content .modal p {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.doctor-submission .modal {
+  margin: 0px;
+  position: relative;
+}
+
+.featherlight-close {
+  font-size: 0;
+  width: 32px !important;
+  height: 32px !important;
+  top: 32px !important;
+  right: 32px !important;
+  background: url("/wp-content/themes/template/build/images/Close.svg") !important;
+  background-size: cover !important;
+}
+
+.edit-img-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 124px;
+  height: 94px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.edit-img-frame img {
+  margin: 0px;
+}
+
+.edit-img-frame.edit:after {
+  content: "EDIT";
+  font-family: Thesans-reg;
+  font-size: .75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  position: absolute;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(43, 48, 52, var(--tw-text-opacity));
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  left: 0;
+  bottom: 0;
+}
+
+#filter-cases {
+  height: 42px;
+  width: 211px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.datatable th, .datatable td {
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.doctor-dashboard .featherlight-content {
+  padding: 0;
+  border: none !important;
+}
+
+.doctor-dashboard .featherlight-content .details-tablet-img img {
+  max-width: 600px;
+}
+
+.doctor-dashboard .featherlight-content .wp-block-columns {
+  margin: 0;
+}
+
+.login-remember label {
+  font-family: Thesans-reg;
+  font-size: 18px;
+  text-transform: none !important;
 }
 
 @media (min-width: 640px) {
