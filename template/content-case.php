@@ -1,7 +1,22 @@
 <div class="case border border-border-grey m-4 p-4 rounded mb-6 relative">
   <div class="wp-block-columns">
-    <div class="wp-block-column" style="flex:33%;">
-      <?php the_post_thumbnail(); ?>
+    <div class="wp-block-column case-photos" style="flex:33%;">
+      <div class="slider">
+        <?php
+        $case_photos = [
+          'before_occluded_buccal_view_of_anterior',
+          'before_occluded_buccal_view_of_right_lateral',
+          'before_occluded_buccal_view_of_left_lateral',
+          'before_occlusal_view_of_upper',
+          'before_occlusal_view_of_lower'
+        ];
+        foreach ($case_photos as $photo) :
+        ?>
+          <div class="case-photo">
+            <img src="<?php echo get_field($photo); ?>" />
+          </div>
+        <?php endforeach; ?>
+      </div>
     </div>
     <div class="wp-block-column" style="flex:66%;">
       <div class="flex justify-between my-2 pb-2 border-b border-border-grey">
@@ -11,7 +26,7 @@
           <p class="flex">SAVES: <?php echo get_field('saves'); ?></p>
           <?php $user = get_current_user_id(); ?>
           <?php $saved = json_decode(get_field('saved', 'user_' . $user)); ?>
-          <?php $saved = json_decode(json_encode($saved),true); ?>
+          <?php $saved = json_decode(json_encode($saved), true); ?>
           <?php if ($saved && in_array($id, $saved)) : ?>
             <img class="drop-save ml-2" src="<?php echo get_template_directory_uri() . '/build/images/HeartActive.svg '; ?>" />
             <img class="absolute ml-2 save" style="opacity:0;pointer-events:none;" src="<?php echo get_template_directory_uri() . '/build/images/Heart.svg '; ?>" />
@@ -41,5 +56,4 @@
       </div>
     </div>
   </div>
-  <a href="<?php the_permalink(); ?>" class="brick"></a>
 </div>

@@ -940,3 +940,27 @@ header {
     font-size: 14px;
   }
 }
+.edit-file-frame {
+  @apply flex items-center justify-center p-4 mr-4;
+  img {
+    @apply m-0;
+  }
+}
+.slider {
+  z-index: 10;
+}
+.prev-arrow,
+.next-arrow {
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,0.7);
+  @apply flex items-center justify-center absolute z-20 cursor-pointer;
+  top: 50%; 
+  transform: translateY(-50%);
+}
+.prev-arrow {
+  @apply left-0;
+}
+.next-arrow {
+  @apply right-0;
+}

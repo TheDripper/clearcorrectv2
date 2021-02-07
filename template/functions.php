@@ -896,3 +896,11 @@ function cards_filter_cases()
 }
 add_action('wp_ajax_nopriv_cards_filter_cases', 'cards_filter_cases');
 add_action('wp_ajax_cards_filter_cases', 'cards_filter_cases');
+
+add_action('wp_ajax_nopriv_set_first_login', 'set_first_login');
+add_action('wp_ajax_set_first_login', 'set_first_login');
+
+function set_first_login() {
+  echo update_field('first_login',false,'user_'.$_POST['user']);
+  wp_die();
+}

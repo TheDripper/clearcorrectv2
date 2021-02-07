@@ -1,6 +1,7 @@
 import Masonry from "masonry-layout";
 import visible from "../util/visible";
 import $ from "jquery";
+import 'slick-carousel'
 import "datatables";
 import "jquery-ui/themes/base/core.css";
 import "jquery-ui/themes/base/draggable.css";
@@ -19,6 +20,15 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     console.log("common");
+    if($('.slider').length) {
+      $('.slider').slick({
+        arrows: true,
+        dots: false,
+        slidesToShow: 1,
+        prevArrow: '<div class=prev-arrow><img src=/wp-content/uploads/2021/02/slider_prev.svg /></div>',
+        nextArrow: '<div class=next-arrow><img src=/wp-content/uploads/2021/02/slider_next.svg /></div>'
+      })
+    }
     if ($("#loginform").length) {
       $("#loginform").on("submit", function (e) {
         e.preventDefault();

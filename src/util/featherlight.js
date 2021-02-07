@@ -1,8 +1,24 @@
 import $ from "jquery";
 import "featherlight";
 export default () => {
-  if($('.doctor-dashboard').length) {
-    $.featherlight($('.modal'));
+  if ($(".doctor-modal").length) {
+    $.featherlight($(".doctor-modal"), {
+      afterClose: function () {
+        var user = $("body").attr("data-user");
+        console.log(user);
+        $.ajax({
+          url: wp.ajax.settings.url,
+          type: "POST",
+          data: {
+            action: "set_first_login",
+            user: user
+          },
+          success: function(res) {
+            console.log(res)
+          }
+        });
+      },
+    });
   }
   // if($('.modals').length) {
   //   console.log('asdf');

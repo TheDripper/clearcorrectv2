@@ -180,7 +180,7 @@ if (!function_exists('wp_handle_upload')) {
 
               <div class="max-w-4xl mx-auto">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Reason for Revision (Optional)</label>
-                <textarea name="reason_for_revision"></textarea>
+                <textarea name="reason_for_revisions"></textarea>
               </div>
               <div class="max-w-4xl mx-auto mt-8">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Clinical Conditions</label>
@@ -207,7 +207,7 @@ if (!function_exists('wp_handle_upload')) {
               </div>
               <div class="max-w-4xl mx-auto mt-8">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Results Achieved</label>
-                <textarea name="results_achieved"></textarea>
+                <textarea name="achieved"></textarea>
               </div>
               <div class="max-w-4xl mx-auto mt-8">
                 <label class=" text-h5-grey uppercase text-xs font-bold">Additional Comments (Optional)</label>
@@ -220,9 +220,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('before_occluded_buccal_view_of_anterior', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of anterior</label>
                         <input type="file" id="before_occluded_buccal_view_of_anterior" name="before_occluded_buccal_view_of_anterior" accept="image/png, image/jpeg">
@@ -233,9 +237,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('before_occluded_buccal_view_of_right_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of right lateral</label>
                         <input type="file" id="before_occluded_buccal_view_of_right_lateral" name="before_occluded_buccal_view_of_right_lateral" accept="image/png, image/jpeg">
@@ -248,9 +256,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('before_occluded_buccal_view_of_left_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of left lateral</label>
                         <input type="file" id="before_occluded_buccal_view_of_left_lateral" name="before_occluded_buccal_view_of_left_lateral" accept="image/png, image/jpeg">
@@ -261,9 +273,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('before_occlusal_view_of_upper', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of upper</label>
                         <input type="file" id="before_occlusal_view_of_upper" name="before_occlusal_view_of_upper" accept="image/png, image/jpeg">
@@ -276,12 +292,16 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('before_occlusal_view_of_lower', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
-                        <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of lower</label>
                         <input type="file" id="before_occlusal_view_of_lower" name="before_occlusal_view_of_lower" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of lower</label>
                       </div>
                     </div>
                   </div>
@@ -298,9 +318,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('after_occluded_buccal_view_of_anterior', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of anterior</label>
                         <input type="file" id="after_occluded_buccal_view_of_anterior" name="after_occluded_buccal_view_of_anterior" accept="image/png, image/jpeg">
@@ -311,9 +335,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('after_occluded_buccal_view_of_right_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of right lateral</label>
                         <input type="file" id="after_occluded_buccal_view_of_right_lateral" name="after_occluded_buccal_view_of_right_lateral" accept="image/png, image/jpeg">
@@ -326,9 +354,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('after_occluded_buccal_view_of_left_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of left lateral</label>
                         <input type="file" id="after_occluded_buccal_view_of_left_lateral" name="after_occluded_buccal_view_of_left_lateral" accept="image/png, image/jpeg">
@@ -339,9 +371,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('after_occlusal_view_of_upper', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of upper</label>
                         <input type="file" id="after_occlusal_view_of_upper" name="after_occlusal_view_of_upper" accept="image/png, image/jpeg">
@@ -354,9 +390,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('after_occlusal_view_of_lower', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <input type="file" id="after_occlusal_view_of_lower" name="after_occlusal_view_of_lower" accept="image/png, image/jpeg">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of lower</label>
@@ -376,9 +416,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('progress_occluded_buccal_view_of_anterior', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of anterior</label>
                         <input type="file" id="progress_occluded_buccal_view_of_anterior" name="progress_occluded_buccal_view_of_anterior" accept="image/png, image/jpeg">
@@ -389,9 +433,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('progress_occluded_buccal_view_of_right_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of right lateral</label>
                         <input type="file" id="progress_occluded_buccal_view_of_right_lateral" name="progress_occluded_buccal_view_of_right_lateral" accept="image/png, image/jpeg">
@@ -404,9 +452,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('progress_occluded_buccal_view_of_left_lateral', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occluded buccal view of left lateral</label>
                         <input type="file" id="progress_occluded_buccal_view_of_left_lateral" name="progress_occluded_buccal_view_of_left_lateral" accept="image/png, image/jpeg">
@@ -417,9 +469,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('progress_occlusal_view_of_upper', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of upper</label>
                         <input type="file" id="progress_occlusal_view_of_upper" name="progress_occlusal_view_of_upper" accept="image/png, image/jpeg">
@@ -432,9 +488,13 @@ if (!function_exists('wp_handle_upload')) {
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
                       $photo = get_field('progress_occlusal_view_of_lower', $case->ID);
-                      if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                      $edit = "edit";
+                      if (empty($photo)) {
+                        $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
+                        $edit = "";
+                      }
                       ?>
-                      <img src="<?php echo $photo; ?>" />
+                      <div class="edit-img-frame <?php echo $edit; ?>"><img src="<?php echo $photo; ?>" /></div>
                       <div class="flex flex-col">
                         <input type="file" id="progress_occlusal_view_of_lower" name="progress_occlusal_view_of_lower" accept="image/png, image/jpeg">
                         <label class="text-h5-grey uppercase text-xs font-bold">Occlusal view of lower</label>
@@ -449,16 +509,16 @@ if (!function_exists('wp_handle_upload')) {
               </div>
               <div class="max-w-4xl mx-auto mt-8 flex items-center">
                 <div class="edit-video-frame mr-6 pl-1 <?php echo $edit; ?>">
-                  <video poster="/wp-content/uploads/2021/02/Rectangle.svg">
-                    <source src="<?php echo get_field('treatment_setup'); ?>">
+                  <video autoplay muted poster="/wp-content/uploads/2021/02/Rectangle.svg">
+                    <source src="<?php echo get_field('treatment_setup', $case->ID); ?>">
                   </video>
                 </div>
                 <div class="flex flex-col">
                   <label class="text-h5-grey uppercase text-xs font-bold flex justify-between mb-2">Treatment Setup Share Link<a href="#" class="modal-link text-xs font-body">What is this?</a></label>
                   <div class="modal">
                     <div class="text-center p-12 flex flex-col items-center">
-                      <p>To find the treatment setup share link, sign into your Doctor Portal account at dr.clearcorrect.com. Once signed in, on the “Manage Orders” page, click on the name of the patient to open the “Case details” page.</p>
-                      <p>Scroll down to the Treatment Setup version that was approved and click on the small document icon  to copy the link of the shareable version of the treatment setup.</p>
+                      <p class="mb-4">To find the treatment setup share link, sign into your Doctor Portal account at dr.clearcorrect.com. Once signed in, on the “Manage Orders” page, click on the name of the patient to open the “Case details” page.</p>
+                      <p>Scroll down to the Treatment Setup version that was approved and click on the small document icon to copy the link of the shareable version of the treatment setup.</p>
                     </div>
                   </div>
                   <input type="file" id="treatment_setup" name="treatment_setup" accept="video/m4a, video/mov">
@@ -471,7 +531,7 @@ if (!function_exists('wp_handle_upload')) {
                   <div class="wp-block-column flex flex-col">
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
-                      $photo = get_field('before_panoramic_x-ray', $case->ID);
+                      $photo = get_field('before_cephalometric_x-ray', $case->ID);
                       if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
                       ?>
                       <img src="<?php echo $photo; ?>" />
@@ -484,7 +544,7 @@ if (!function_exists('wp_handle_upload')) {
                   <div class="wp-block-column flex flex-col">
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
-                      $photo = get_field('before_cephalometric_x-ray', $case->ID);
+                      $photo = get_field('before_panoramic_x-ray', $case->ID);
                       if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
                       ?>
                       <img src="<?php echo $photo; ?>" />
@@ -499,7 +559,7 @@ if (!function_exists('wp_handle_upload')) {
                   <div class="wp-block-column flex flex-col">
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
-                      $photo = get_field('after_panoramic_x-ray', $case->ID);
+                      $photo = get_field('after_cephalometric_x-ray', $case->ID);
                       if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
                       ?>
                       <img src="<?php echo $photo; ?>" />
@@ -513,7 +573,7 @@ if (!function_exists('wp_handle_upload')) {
                   <div class="wp-block-column flex flex-col">
                     <div class="flex items-center max-w-4xl mx-auto avatar">
                       <?php
-                      $photo = get_field('after_cephalometric_x-ray', $case->ID);
+                      $photo = get_field('after_panoramic_x-ray', $case->ID);
                       if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com//wp-content/uploads/2021/01/no_photo.png';
                       ?>
                       <img src="<?php echo $photo; ?>" />
@@ -528,6 +588,40 @@ if (!function_exists('wp_handle_upload')) {
 
 
               </div>
+              <div class="max-w-4xl mx-auto mt-8">
+                <h3 class="mb-4">STL Files</h3>
+                <div class="wp-block-columns max-w-4xl mx-auto">
+                  <div class="wp-block-column flex flex-col">
+                    <div class="flex items-center max-w-4xl mx-auto avatar">
+                      <?php
+                      $photo = get_field('stl_file_upper');
+                      if (empty($photo)) $photo = '/wp-content/uploads/2021/02/File.svg';
+                      ?>
+                      <img src="<?php echo $photo; ?>" />
+                      <div class="flex flex-col">
+                        <input type="file" id="stl_file_upper" name="stl_file_upper" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">Upper Impression .STL file (optional)
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wp-block-column flex flex-col">
+                    <div class="flex items-center max-w-4xl mx-auto avatar">
+                      <?php
+                      $photo = get_field('stl_file_lower');
+                      if (empty($photo)) $photo = '/wp-content/uploads/2021/02/File.svg';
+                      ?>
+                      <img src="<?php echo $photo; ?>" />
+                      <div class="flex flex-col">
+                        <input type="file" id="stl_file_lower" name="stl_file_lower" accept="image/png, image/jpeg">
+                        <label class="text-h5-grey uppercase text-xs font-bold">Lower Impression .STL file (optional)
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class=" max-w-4xl w-full mx-auto flex flex-col">
 
                 <input type="submit" class="w-full max-w-xs bg-pink text-white text-sm uppercase mx-auto rounded my-12 py-4 font-bold" value="SUBMIT" />

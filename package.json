@@ -16,6 +16,7 @@
     "jquery": "^3.3.1",
     "jquery-ui": "^1.12.1",
     "postcss": "^7.0.35",
+    "slick-carousel": "^1.8.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
   },
   "devDependencies": {

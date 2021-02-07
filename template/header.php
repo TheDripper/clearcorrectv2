@@ -4,12 +4,13 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
   <link href="//cdn.jsdelivr.net/npm/featherlight@1.7.14/release/featherlight.min.css" type="text/css" rel="stylesheet" />
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-user=<?php echo get_current_user_id(); ?>>
   <header>
     <div class="bg-grey logo-cont m-0 w-full relative z-10 w-full">
       <div class="max-w-6xl w-full mx-auto flex justify-end items-end">
