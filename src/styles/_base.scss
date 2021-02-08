@@ -441,7 +441,8 @@ header {
   }
 }
 .facetwp-checkbox {
-  @apply relative;
+  @apply relative text-tiny;
+  border-style: solid !important;
   padding-left: 60px !important;
   background: none !important;
   &:before {
@@ -463,13 +464,13 @@ header {
 .facet-arrow {
   position: relative;
   padding-left: 30px;
+  cursor: pointer;
   &:before {
     content: url("/wp-content/themes/template/build/images/arrow-down.svg");
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 7px;
-    height: 12px;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 .before-after-slider {
@@ -609,11 +610,12 @@ header {
   margin-left: -1.5rem;
 }
 .banner-submit {
+  height: 246px;
+  overflow: hidden;
+  @apply m-4;
   .wp-block-column:first-child {
     max-width: 480px;
-    figure {
-      width: 480px;
-    }
+    overflow: hidden;
   }
   .wp-block-button__link {
     width: 175px;
@@ -910,7 +912,13 @@ header {
   }
 }
 .doctor-dashboard {
+  .featherlight {
+    @apply flex items-center justify-center;
+  }
   .featherlight-content {
+    @apply flex items-center m-0;
+    height: 693px;
+    width: 980px;
     .details-tablet-img img {
       max-width: 600px;
     }
@@ -918,6 +926,21 @@ header {
     border: none !important;
     .wp-block-columns {
       margin: 0;
+      .wp-block-column {
+        height: 693px;
+        &:first-child {
+          width: 500px;
+        }
+        &:last-child {
+          @apply flex flex-col justify-center pr-6;
+        }
+      }
+    }
+  }
+  .details-tablet-img {
+    img {
+      width: 500px;
+      @apply absolute left-0 bottom-0;
     }
   }
 }
@@ -953,9 +976,9 @@ header {
 .next-arrow {
   width: 24px;
   height: 24px;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   @apply flex items-center justify-center absolute z-20 cursor-pointer;
-  top: 50%; 
+  top: 50%;
   transform: translateY(-50%);
 }
 .prev-arrow {
@@ -963,4 +986,24 @@ header {
 }
 .next-arrow {
   @apply right-0;
+}
+// .banner-ad {
+//   .wp-block-image {
+//     width: 398px;
+//     height: 265px;
+//   }
+// }
+.facetwp-facet,
+.facet-arrow {
+  @apply font-avenir-medium;
+}
+.facetwp-facet {
+  margin-bottom: 0.5rem !important;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+  max-height: 1000px;
+  &.hide-height {
+    max-height: 0;
+    margin-bottom: 0 !important;
+  }
 }

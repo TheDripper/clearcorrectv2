@@ -18,3 +18,11 @@
     font-family: "Thesans-bold";
     src: url("./fonts/thesans/TheSans-LP7Bld.otf");
 }
+@font-face {
+    font-family: "Avenir-bold";
+    src: url("./fonts/avenir/body-bold.ttf");
+}
+@font-face {
+    font-family: "Avenir-medium";
+    src: url("./fonts/avenir/body-medium.ttf");
+}

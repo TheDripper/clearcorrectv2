@@ -43,20 +43,18 @@
                   <input type="text" name="last_name" />
                   <label class="text-h5-grey uppercase text-xs font-bold">Degree</label>
                   <div class="select">
-
                     <select name="degree">
-                      <option>Make Selection</option>
-                      <option>One</option>
-                      <option>Two</option>
+                      <option value="Make Selection">Make Selection</option>
+                      <option value="One">One</option>
+                      <option value="Two">Two</option>
                     </select>
                   </div>
                   <label class="text-h5-grey uppercase text-xs font-bold">Specialty</label>
                   <div class="select">
-
                     <select name="specialty">
-                      <option>Make Selection</option>
-                      <option>One</option>
-                      <option>Two</option>
+                      <option value="Make Selection">Make Selection</option>
+                      <option value="One">One</option>
+                      <option value="Two">Two</option>
                     </select>
                   </div>
                   <label class="text-h5-grey uppercase text-xs font-bold">Practice State or Province</label>

@@ -30,7 +30,7 @@
         </div>
         <?php if (current_user_can('author')) : ?>
           <ul class="logged-in-dropdown">
-            <li><a href="/doctor-dashboard"><?php echo wp_get_current_user()->user_login; ?></a></li>
+            <li><a href="/update-profile"><?php echo wp_get_current_user()->user_login; ?></a></li>
             <li><a href="/doctor-dashboard">Dashboard</a></li>
             <li><a href="/doctor-messages">Messages</a></li>
             <?php $logout = get_site_url(); ?>

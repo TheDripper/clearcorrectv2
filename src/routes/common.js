@@ -1,34 +1,22 @@
 import Masonry from "masonry-layout";
 import visible from "../util/visible";
 import $ from "jquery";
-import 'slick-carousel'
+import "slick-carousel";
 import "datatables";
 import "jquery-ui/themes/base/core.css";
 import "jquery-ui/themes/base/draggable.css";
 import "jquery-ui/ui/core";
 import "jquery-ui/ui/widgets/draggable";
-function resetSlider(slider) {
-  var imgWidth = slider.find("figure").first().width();
-  var imgHeight = slider.find("figure").first().height();
-  slider.parent().find("figure").last().find("img").css({
-    maxWidth: "none",
-    width: imgWidth,
-    height: imgHeight,
-  });
-}
 export default {
   init() {
     // JavaScript to be fired on all pages
-    console.log("common");
-    if($('.slider').length) {
-      $('.slider').slick({
-        arrows: true,
-        dots: false,
-        slidesToShow: 1,
-        prevArrow: '<div class=prev-arrow><img src=/wp-content/uploads/2021/02/slider_prev.svg /></div>',
-        nextArrow: '<div class=next-arrow><img src=/wp-content/uploads/2021/02/slider_next.svg /></div>'
-      })
+    if ($(".facet-arrow").length) {
+      $(".facet-arrow").on("click", function () {
+        $(this).next().toggleClass("hide-height");
+      });
     }
+    console.log("ow");
+    
     if ($("#loginform").length) {
       $("#loginform").on("submit", function (e) {
         e.preventDefault();
@@ -48,12 +36,33 @@ export default {
         }
       });
     }
-    $(document).on("facetwp-loaded", function () {
-      console.log("facet");
-      var count = $(".facetwp-template").children().length;
-      console.log(count);
-      $("#case-count").text(count + " cases");
-    });
+    if ($(".post-type-archive-case").length) {
+      var ad = $("main").attr("data-banner-ad");
+      var content = $("main").attr("data-page-content");
+      $.ajax({
+        url: wp.ajax.settings.url,
+        type: "POST",
+        data: {
+          action: "get_other_content",
+          id: ad,
+        },
+        success: function (res) {
+          $(".case:nth-child(2)").after(res);
+        },
+      });
+      $.ajax({
+        url: wp.ajax.settings.url,
+        type: "POST",
+        data: {
+          action: "get_other_content",
+          id: content,
+        },
+        success: function (res) {
+          $('.content').append(res);
+        },
+      });
+    }
+
     if ($("#filter-cases").length) {
       $("#filter-cases").on("change", function (e) {
         var slug = $(this).val();
@@ -76,20 +85,20 @@ export default {
     if ($("#cards-filter-cases").length) {
       $("#cards-filter-cases").on("change", function (e) {
         var slug = $(this).val();
-        var doctor = $(this).attr('data-doctor');
+        var doctor = $(this).attr("data-doctor");
         $.ajax({
           url: wp.ajax.settings.url,
           type: "POST",
           data: {
             action: "cards_filter_cases",
             slug: slug,
-            doctor: doctor
+            doctor: doctor,
           },
           success: function (res) {
             console.log(res);
-            $('.facetwp-template').empty();
-            $('.facetwp-template').append(res);
-          }
+            $(".facetwp-template").empty();
+            $(".facetwp-template").append(res);
+          },
         });
       });
     }
@@ -130,7 +139,7 @@ export default {
           console.log(input);
           reader.onload = function (e) {
             var video = $(input).parent().parent().find("video");
-            video.find('source').attr("src", e.target.result);
+            video.find("source").attr("src", e.target.result);
             video.parent().addClass("edit");
           };
           reader.readAsDataURL(input.files[0]); // convert to base64 string

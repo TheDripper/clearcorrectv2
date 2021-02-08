@@ -38,8 +38,9 @@ module.exports = {
     fontFamily: {
       head: ["Geomanist-bold"],
       body: ["Thesans-reg"],
-      "body-bold": ["Thesans-bold"],
+      "body-bold": ["Avenir-bold"],
       "body-medium": ["Thesans-medium"],
+      "avenir-medium": ["Avenir-medium"]
     },
     textColor: {
       pink: "#FB5373",
@@ -47,6 +48,7 @@ module.exports = {
       grey: "#2B3034",
       "h5-grey": "#979797",
       green: "#13C9B1",
+      "body-grey":"#36393A"
     },
     backgroundColor: (theme) => ({
       ...theme("colors"),

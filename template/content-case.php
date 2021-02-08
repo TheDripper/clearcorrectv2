@@ -1,7 +1,7 @@
 <div class="case border border-border-grey m-4 p-4 rounded mb-6 relative">
   <div class="wp-block-columns">
     <div class="wp-block-column case-photos" style="flex:33%;">
-      <div class="slider">
+      <div class="slider new">
         <?php
         $case_photos = [
           'before_occluded_buccal_view_of_anterior',
@@ -21,9 +21,9 @@
     <div class="wp-block-column" style="flex:66%;">
       <div class="flex justify-between my-2 pb-2 border-b border-border-grey">
         <?php $id = get_the_ID(); ?>
-        <h5 class="text-sm font-bold">SUB ID: <?php echo $id; ?></h5>
+        <label class="text-tiny">SUB ID: <?php echo $id; ?></label>
         <div class="saves flex relative" data-id="<?php echo $id; ?>">
-          <p class="flex">SAVES: <?php echo get_field('saves'); ?></p>
+          <p class="flex items-center text-tiny text-body-grey">SAVES: <?php echo get_field('saves'); ?></p>
           <?php $user = get_current_user_id(); ?>
           <?php $saved = json_decode(get_field('saved', 'user_' . $user)); ?>
           <?php $saved = json_decode(json_encode($saved), true); ?>

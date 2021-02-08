@@ -11,7 +11,6 @@
   </section>
   <?php
 $banner_ad = get_post(23);
-var_dump($banner_ad);
 $content = $banner_ad->post_content;
 $content = apply_filters('the_content', $content);
 $content = str_replace(']]>', ']]>', $content);

@@ -23,6 +23,8 @@ add_action('wp_enqueue_scripts', function () {
   wp_enqueue_style('fonts', get_template_directory_uri() . "/build/fonts.css",  false, null);
   wp_enqueue_style('theme-css', get_template_directory_uri() . "/build/" . $main->css,  ['fonts'], null);
   wp_enqueue_script('wp-util');
+  wp_enqueue_script('slick', "http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js", ['jquery'], null, true);
+  wp_enqueue_script('facet-loader', get_template_directory_uri() . "/build/facet-load.js", ['jquery'], null, true);
   wp_enqueue_script('theme-js', get_template_directory_uri() . "/build/" . $main->js, ['jquery', 'wp-util'], null, true);
 }, 100);
 
@@ -889,7 +891,7 @@ function cards_filter_cases()
   $q = new WP_Query($args);
   while ($q->have_posts()) : $q->the_post() ?>
     <?php get_template_part('content', 'case'); ?>
-<?php
+  <?php
   endwhile;
   wp_reset_postdata();
   wp_die();
@@ -900,7 +902,23 @@ add_action('wp_ajax_cards_filter_cases', 'cards_filter_cases');
 add_action('wp_ajax_nopriv_set_first_login', 'set_first_login');
 add_action('wp_ajax_set_first_login', 'set_first_login');
 
-function set_first_login() {
-  echo update_field('first_login',false,'user_'.$_POST['user']);
+function set_first_login()
+{
+  echo update_field('first_login', false, 'user_' . $_POST['user']);
   wp_die();
+}
+add_action('wp_ajax_nopriv_get_other_content', 'get_other_content');
+add_action('wp_ajax_get_other_content', 'get_other_content');
+
+function get_other_content()
+{
+  $banner_ad = get_post($_POST['id']);
+  $content = $banner_ad->post_content;
+$content = apply_filters('the_content', $content);
+$content = str_replace(']]>', ']]>', $content);
+  ?>
+    <?php echo $content; ?>
+<?php 
+wp_reset_postdata();
+wp_die();
 }
