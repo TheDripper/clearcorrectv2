@@ -49,9 +49,11 @@
         </div>
         <div class="wp-block-column">
           <label class="text-h5-grey uppercase text-xs font-bold">Patient</label>
-          <h5 class="mb-4"><?php the_field('gender', "user_" . wp_get_current_user()->ID); ?>, <?php the_field('age', "user_" . wp_get_current_user()->ID); ?></h5>
+          <?php $gender = wp_get_post_terms($id, 'gender')[0]->name; ?>
+          <?php $age = get_field('age',$id);  ?>
+          <p class="mb-4"><?php echo $gender; ?>, <?php echo $age; ?></p>
           <label class="text-h5-grey uppercase text-xs font-bold">Level of Difficulty</label>
-          <h5><?php echo wp_get_post_terms($id, 'level_of_difficulty')[0]->name; ?></h5>
+          <p><?php echo wp_get_post_terms($id, 'level_of_difficulty')[0]->name; ?></p>
         </div>
       </div>
     </div>

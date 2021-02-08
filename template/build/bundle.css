@@ -19197,6 +19197,27 @@ header .logo-cont {
   z-index: 10;
 }
 
+.slider .case-photo {
+  width: 254px;
+  height: 240px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.slider .case-photo img {
+  height: 100% !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
 .prev-arrow,
 .next-arrow {
   width: 24px;
@@ -19242,10 +19263,10 @@ header .logo-cont {
 .facetwp-facet {
   margin-bottom: 0.5rem !important;
   overflow: hidden;
-  -webkit-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-  max-height: 1000px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  max-height: 800px;
 }
 
 .facetwp-facet.hide-height {
