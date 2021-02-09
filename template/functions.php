@@ -865,20 +865,26 @@ function my_front_end_login_fail($username)
 }
 function cards_filter_cases()
 {
-  $doctor = $_POST['doctor'];
+  // $doctor = $_POST['doctor'];
   $current_user = wp_get_current_user();
-  $gender = (array) get_terms('gender', array('hide_empty' => false))[0];
-  $classification = (array) get_terms('classification', array('hide_empty' => false))[0];
+  $gender = (array) get_terms('gender', array('hide_empty' => false));
+  $gender = json_decode(json_encode($gender), true);
+  $classification = (array) get_terms('classification', array('hide_empty' => false));
+  $classification = json_decode(json_encode($classification), true);
   $tax = '';
-  if (in_array($_POST["slug"], $gender, true)) $tax = 'gender';
+  // var_dump($_POST['slug']);
+  foreach ($gender as $term) {
+    if (in_array($_POST["slug"], $term, true)) $tax = 'gender';
+  }
+  foreach ($classification as $term) {
+    if (in_array($_POST["slug"], $term, true)) $tax = 'classification';
+  }
   if (in_array($_POST["slug"], $classification, true)) $tax = 'classification';
+
   $args = array(
     'post_type' => 'case',
     'posts_per_page' => -1,
     'post_status' => 'publish',
-    'meta_key' => 'doctor',
-    'meta_value' => $doctor,
-    'post_status' => 'any',
     'tax_query' => array(
       array(
         'taxonomy' => $tax,
@@ -887,6 +893,10 @@ function cards_filter_cases()
       )
     )
   );
+  if ($_POST['doctor']) {
+    $args['meta_key'] = 'doctor';
+    $args['meta_value'] = $_POST['doctor'];
+  }
   global $post;
   $q = new WP_Query($args);
   while ($q->have_posts()) : $q->the_post() ?>
@@ -914,11 +924,11 @@ function get_other_content()
 {
   $banner_ad = get_post($_POST['id']);
   $content = $banner_ad->post_content;
-$content = apply_filters('the_content', $content);
-$content = str_replace(']]>', ']]>', $content);
+  $content = apply_filters('the_content', $content);
+  $content = str_replace(']]>', ']]>', $content);
   ?>
-    <?php echo $content; ?>
-<?php 
-wp_reset_postdata();
-wp_die();
+  <?php echo $content; ?>
+<?php
+  wp_reset_postdata();
+  wp_die();
 }

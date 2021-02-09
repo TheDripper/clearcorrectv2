@@ -19067,9 +19067,13 @@ header .logo-cont {
   bottom: 0;
 }
 
-#filter-cases {
+#filter-cases,
+#cards-filter-cases {
   height: 42px;
   width: 211px;
+}
+
+#filter-cases, #cards-filter-cases {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
