@@ -664,6 +664,41 @@ function register_taxonomies()
     'rewrite'                    => array('slug' => 'total_treatment_times')
   );
   register_taxonomy('total_treatment_time', array('case'), $args);
+  $labels = array(
+    'name'                       => 'country',
+    'singular_name'              => 'country',
+    'menu_name'                  => 'country',
+    'all_items'                  => 'All Items',
+    'parent_item'                => 'Parent Item',
+    'parent_item_colon'          => 'Parent Item:',
+    'new_item_name'              => 'New Item Name',
+    'add_new_item'               => 'Add New Item',
+    'edit_item'                  => 'Edit Item',
+    'update_item'                => 'Update Item',
+    'view_item'                  => 'View Item',
+    'separate_items_with_commas' => 'Separate items with commas',
+    'add_or_remove_items'        => 'Add or remove items',
+    'choose_from_most_used'      => 'Choose from the most used',
+    'popular_items'              => 'Popular Items',
+    'search_items'               => 'Search Items',
+    'not_found'                  => 'Not Found',
+    'no_terms'                   => 'No items',
+    'items_list'                 => 'Items list',
+    'items_list_navigation'      => 'Items list navigation',
+  );
+  $args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => true,
+    'show_in_rest'               => true,
+    'has_archive'                => true,
+    'rewrite'                    => array('slug' => 'countries')
+  );
+  register_taxonomy('country', array('doctor'), $args);
 }
 add_action('init', 'register_taxonomies', 0);
 

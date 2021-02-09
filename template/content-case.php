@@ -54,6 +54,9 @@
           <p class="mb-4"><?php echo $gender; ?>, <?php echo $age; ?></p>
           <label class="text-h5-grey uppercase text-xs font-bold">Level of Difficulty</label>
           <p><?php echo wp_get_post_terms($id, 'level_of_difficulty')[0]->name; ?></p>
+          <label class="text-h5-grey uppercase text-xs font-bold">Doctor</label>
+          <?php  ?>
+          <p class="font-bold"><a href="<?php the_permalink(); ?>">Dr. <?php echo get_field('doctor',$id)->post_title; ?></a></p>
         </div>
       </div>
     </div>

@@ -25,15 +25,13 @@
 
                   <input type="text" name="user-number" />
                   <label class="text-h5-grey uppercase text-xs font-bold">Practice Country</label>
-
                   <div class="select">
-                    <select name="practice-country">
-                      <option>Make Selection</option>
-                      <option>One</option>
-                      <option>Two</option>
+                    <select name="term_country">
+                      <?php foreach (get_terms('country', array('hide_empty' => false)) as $term) : ?>
+                        <option value=<?php $term->slug; ?>><?php echo $term->name; ?></option>
+                      <?php endforeach;  ?>
                     </select>
                   </div>
-
                 </div>
 
                 <div class="wp-block-column flex flex-col">

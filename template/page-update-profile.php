@@ -14,7 +14,7 @@ $args = array(
   'order'         =>  'ASC',
   'posts_per_page' => 1,
   'post_type' => 'doctor',
-  'post_status'=>'any'
+  'post_status' => 'any'
 );
 $doctor = get_posts($args)[0];
 ?>
@@ -89,11 +89,16 @@ $doctor = get_posts($args)[0];
               <div class="wp-block-columns max-w-4xl mx-auto">
                 <div class="wp-block-column flex flex-col">
                   <label class="text-h5-grey uppercase text-xs font-bold">Practice Country</label>
+                  <?php $active_terms = (array) wp_get_object_terms($doctor->ID, 'country')[0]; ?>
                   <div class="select">
-                    <select name="practice-country">
-                      <option <?php if (get_field('practice-country', $doctor->ID) == 'Make Selection') echo 'selected '; ?> value="Make Selection">Make Selection</option>
-                      <option <?php if (get_field('practice-country', $doctor->ID) == 'One') echo 'selected '; ?>value="One">One</option>
-                      <option <?php if (get_field('practice-country', $doctor->ID) == 'Two') echo 'selected '; ?>value="Two">Two</option>
+                    <select name="term_country">
+                      <?php foreach (get_terms('country', array('hide_empty' => false)) as $term) : ?>
+                        <?php $selected = ''; ?>
+                        <?php if (in_array($term->name, $active_terms)) : ?>
+                          <?php $selected = 'selected '; ?>
+                        <?php endif; ?>
+                        <option value="<?php echo $term->slug; ?>" <?php echo $selected; ?>><?php echo $term->name; ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
