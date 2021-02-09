@@ -3963,6 +3963,10 @@ h4 {
   font-family: Avenir-medium !important;
 }
 
+.font-avenir-demi {
+  font-family: Avenir-demi !important;
+}
+
 .font-thin {
   font-weight: 100 !important;
 }
@@ -22590,6 +22594,10 @@ header .logo-cont {
     font-family: Avenir-medium !important;
   }
 
+  .sm\:font-avenir-demi {
+    font-family: Avenir-demi !important;
+  }
+
   .sm\:font-thin {
     font-weight: 100 !important;
   }
@@ -39591,6 +39599,10 @@ header .logo-cont {
 
   .md\:font-avenir-medium {
     font-family: Avenir-medium !important;
+  }
+
+  .md\:font-avenir-demi {
+    font-family: Avenir-demi !important;
   }
 
   .md\:font-thin {
@@ -56596,6 +56608,10 @@ header .logo-cont {
     font-family: Avenir-medium !important;
   }
 
+  .lg\:font-avenir-demi {
+    font-family: Avenir-demi !important;
+  }
+
   .lg\:font-thin {
     font-weight: 100 !important;
   }
@@ -73599,6 +73615,10 @@ header .logo-cont {
     font-family: Avenir-medium !important;
   }
 
+  .xl\:font-avenir-demi {
+    font-family: Avenir-demi !important;
+  }
+
   .xl\:font-thin {
     font-weight: 100 !important;
   }
@@ -90600,6 +90620,10 @@ header .logo-cont {
 
   .\32xl\:font-avenir-medium {
     font-family: Avenir-medium !important;
+  }
+
+  .\32xl\:font-avenir-demi {
+    font-family: Avenir-demi !important;
   }
 
   .\32xl\:font-thin {

@@ -16,7 +16,7 @@ $cases = get_posts($args);
   <section>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-      <?php if(true || get_field('first_login','user_'.$current_user->ID)): ?>
+      <?php if(get_field('first_login','user_'.$current_user->ID)): ?>
       <div class="doctor-modal modal">
       <?php the_content(); ?>
       </div>

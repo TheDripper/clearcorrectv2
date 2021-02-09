@@ -23,9 +23,13 @@ unset($_POST['last_name']);
 unset($_POST['email']);
 unset($_POST['user_number']);
 unset($_POST['user_email']);
-foreach ($_POST as $key => $value) :
-  update_field($key, $value, $doctor);
-endforeach;
+foreach ($_POST as $key => $value) {
+  if (strpos($key, 'term_') === 0) {
+      wp_set_object_terms($doctor, $value, substr($key, 5));
+  } else {
+      update_field($key, $value, $doctor);
+  }
+}
 ?>
 <main role="main" aria-label="Content" class="bg-back-grey py-8">
   <!-- section -->

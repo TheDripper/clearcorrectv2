@@ -80,7 +80,9 @@ $doctor = get_posts($args)[0];
                 $photo = get_the_post_thumbnail_url($doctor->ID);
                 if (empty($photo)) $photo = 'http://ec2-18-144-32-142.us-west-1.compute.amazonaws.com/wp-content/uploads/2021/01/avatar.png';
                 ?>
-                <img src="<?php echo $photo; ?>" />
+                <div class="edit-img-frame">
+                  <img src="<?php echo $photo; ?>" />
+                </div>
                 <div class="flex flex-col">
                   <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                   <label class="text-h5-grey uppercase text-xs font-bold">Profile Image (Optional)</label>
@@ -94,7 +96,7 @@ $doctor = get_posts($args)[0];
                     <select name="term_country">
                       <?php foreach (get_terms('country', array('hide_empty' => false)) as $term) : ?>
                         <?php $selected = ''; ?>
-                        <?php if (in_array($term->name, $active_terms)) : ?>
+                        <?php if (in_array($term->name, $active_terms, true)) : ?>
                           <?php $selected = 'selected '; ?>
                         <?php endif; ?>
                         <option value="<?php echo $term->slug; ?>" <?php echo $selected; ?>><?php echo $term->name; ?></option>

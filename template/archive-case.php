@@ -50,6 +50,9 @@
         </div>
       </div>
       <?php echo facetwp_display('template', 'cases'); ?>
+      <div class="wp-block-buttons aligncenter mt-6 mb-12 hollow font-avenir-demi">
+        <div class="wp-block-button"><a class="wp-block-button__link">Load More</a></div>
+      </div>
     </div>
   </div>
   <!-- /section -->

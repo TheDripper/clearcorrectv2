@@ -952,18 +952,23 @@ function set_first_login()
   echo update_field('first_login', false, 'user_' . $_POST['user']);
   wp_die();
 }
-add_action('wp_ajax_nopriv_get_other_content', 'get_other_content');
-add_action('wp_ajax_get_other_content', 'get_other_content');
+add_action('wp_ajax_nopriv_load_more_cases', 'load_more_cases');
+add_action('wp_ajax_load_more_cases', 'load_more_cases');
 
-function get_other_content()
-{
-  $banner_ad = get_post($_POST['id']);
-  $content = $banner_ad->post_content;
-  $content = apply_filters('the_content', $content);
-  $content = str_replace(']]>', ']]>', $content);
-  ?>
-  <?php echo $content; ?>
+function load_more_cases() {
+  $offset = $_POST['offset'];
+$args = array(
+  'post_type' => 'case',
+  'posts_per_page' => 10,
+  'post_status' => 'publish',
+  'offset' => $offset
+);
+global $post;
+$q = new WP_Query($args);
+while ($q->have_posts()) : $q->the_post() ?>
+  <?php get_template_part('content', 'case'); ?>
 <?php
-  wp_reset_postdata();
-  wp_die();
+endwhile;
+wp_reset_postdata();
+wp_die();
 }

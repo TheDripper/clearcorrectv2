@@ -35,11 +35,9 @@ unset($_POST['user_number']);
 unset($_POST['user_email']);
 foreach ($_POST as $key => $value) {
     if (strpos($key, 'term_') === 0) {
-        var_dump(substr($key, 5));
-        var_dump($value);
-        var_dump(wp_set_object_terms($doctor->ID, $value, substr($key, 5)));
+        wp_set_object_terms($doctor->ID, $value, substr($key, 5));
     } else {
-        update_field($key, $value, $doctor);
+        update_field($key, $value, $doctor->ID);
     }
 }
 ?>
