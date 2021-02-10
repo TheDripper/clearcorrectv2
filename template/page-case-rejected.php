@@ -1,39 +1,32 @@
 <?php get_header(); ?>
-<?php if(get_current_user_id() == get_post($_GET['id'])->post_author) {
-  wp_publish_post($_GET['id']);
+<?php if (current_user_can('administrator')) {
+  update_field('reason_for_rejection', $_POST["reason_for_rejection"], $_POST["id"]);
 }
- ?>
+?>
 <main role="main" aria-label="Content" class="bg-back-grey py-8">
   <!-- section -->
   <section>
-
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <!-- article -->
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-        <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6 py-32">
-          <p class="text-3xl text-center mb-6">Your submission has been deleted.</p>
-          <?php if(current_user_can('author')): ?>
-          <a href="/doctor-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
-          <?php else: ?>
-            <a href="/patient-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
-            <?php endif; ?>
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+      <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6 py-32">
+        <p class="text-3xl text-center mb-6">The following submission has been rejected:</p>
+        <div class="max-w-4xl w-full mx-auto">
+          <h1 class="text-pink text-center mb-6"><?php echo $_POST['id']; ?></h1>
+          <div class="max-w-4xl mx-auto mb-4">
+          <p class="font-body-bold">Reason for rejection:</p>
+          <p class="mb-6"><?php echo $_POST['reason_for_rejection']; ?></p>
+          </div>
         </div>
-        </article>
-      <?php endwhile; ?>
-
-    <?php else : ?>
-
-      <!-- article -->
-      <article>
-
-        <h2><?php _e('Sorry, nothing to display.', 'html5blank'); ?></h2>
-
-      </article>
-      <!-- /article -->
-
-    <?php endif; ?>
-
+        <?php if (current_user_can('author')) : ?>
+          <a href="/doctor-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+        <?php elseif (current_user_can('contributor')) : ?>
+          <a href="/patient-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+        <?php else : ?>
+          <a href="/admin-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+        <?php endif; ?>
+      </div>
+    </article>
   </section>
-  <!-- /section -->
+
+
 </main>
 <?php get_footer(); ?>

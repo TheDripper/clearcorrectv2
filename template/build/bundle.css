@@ -18185,14 +18185,16 @@ header .logo-cont {
 
 .doctor-registration,
 .doctor-login,
-.submission-edit {
+.submission-edit,
+.reject-post {
   border-radius: 4px;
   border: 1px solid #e6eaee;
 }
 
 .doctor-registration textarea,
   .doctor-login textarea,
-  .submission-edit textarea {
+  .submission-edit textarea,
+  .reject-post textarea {
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
           box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #d0d0d0;
@@ -18213,7 +18215,11 @@ header .logo-cont {
   .submission-edit input[type="text"],
   .submission-edit input[type="email"],
   .submission-edit input[type="date"],
-  .submission-edit input[type="password"] {
+  .submission-edit input[type="password"],
+  .reject-post input[type="text"],
+  .reject-post input[type="email"],
+  .reject-post input[type="date"],
+  .reject-post input[type="password"] {
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
           box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #d0d0d0;
@@ -18222,18 +18228,19 @@ header .logo-cont {
   padding: 0 20px;
 }
 
-.doctor-registration input[type="text"], .doctor-registration input[type="email"], .doctor-registration input[type="date"], .doctor-registration input[type="password"], .doctor-login input[type="text"], .doctor-login input[type="email"], .doctor-login input[type="date"], .doctor-login input[type="password"], .submission-edit input[type="text"], .submission-edit input[type="email"], .submission-edit input[type="date"], .submission-edit input[type="password"] {
+.doctor-registration input[type="text"], .doctor-registration input[type="email"], .doctor-registration input[type="date"], .doctor-registration input[type="password"], .doctor-login input[type="text"], .doctor-login input[type="email"], .doctor-login input[type="date"], .doctor-login input[type="password"], .submission-edit input[type="text"], .submission-edit input[type="email"], .submission-edit input[type="date"], .submission-edit input[type="password"], .reject-post input[type="text"], .reject-post input[type="email"], .reject-post input[type="date"], .reject-post input[type="password"] {
   margin-bottom: 2rem;
 }
 
 .doctor-registration .login-submit,
   .doctor-login .login-submit,
-  .submission-edit .login-submit {
+  .submission-edit .login-submit,
+  .reject-post .login-submit {
   width: 100%;
   text-align: center;
 }
 
-.doctor-registration #loginform, .doctor-registration #patient-register, .doctor-registration #patient-submission, .doctor-login #loginform, .doctor-login #patient-register, .doctor-login #patient-submission, .submission-edit #loginform, .submission-edit #patient-register, .submission-edit #patient-submission {
+.doctor-registration #loginform, .doctor-registration #patient-register, .doctor-registration #patient-submission, .doctor-login #loginform, .doctor-login #patient-register, .doctor-login #patient-submission, .submission-edit #loginform, .submission-edit #patient-register, .submission-edit #patient-submission, .reject-post #loginform, .reject-post #patient-register, .reject-post #patient-submission {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18284,7 +18291,19 @@ header .logo-cont {
     .submission-edit #patient-submission input[type="text"],
     .submission-edit #patient-submission input[type="email"],
     .submission-edit #patient-submission input[type="password"],
-    .submission-edit #patient-submission label {
+    .submission-edit #patient-submission label,
+    .reject-post #loginform input[type="text"],
+    .reject-post #loginform input[type="email"],
+    .reject-post #loginform input[type="password"],
+    .reject-post #loginform label,
+    .reject-post #patient-register input[type="text"],
+    .reject-post #patient-register input[type="email"],
+    .reject-post #patient-register input[type="password"],
+    .reject-post #patient-register label,
+    .reject-post #patient-submission input[type="text"],
+    .reject-post #patient-submission input[type="email"],
+    .reject-post #patient-submission input[type="password"],
+    .reject-post #patient-submission label {
   width: 322px;
   max-width: 100%;
 }
@@ -18297,7 +18316,10 @@ header .logo-cont {
     .doctor-login #patient-submission input[type="checkbox"],
     .submission-edit #loginform input[type="checkbox"],
     .submission-edit #patient-register input[type="checkbox"],
-    .submission-edit #patient-submission input[type="checkbox"] {
+    .submission-edit #patient-submission input[type="checkbox"],
+    .reject-post #loginform input[type="checkbox"],
+    .reject-post #patient-register input[type="checkbox"],
+    .reject-post #patient-submission input[type="checkbox"] {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   width: 30px;
@@ -18316,12 +18338,16 @@ header .logo-cont {
   .submission-edit #patient-edit input[type="text"],
   .submission-edit #patient-edit input[type="email"],
   .submission-edit #patient-edit input[type="password"],
-  .submission-edit #patient-edit label {
+  .submission-edit #patient-edit label,
+  .reject-post #patient-edit input[type="text"],
+  .reject-post #patient-edit input[type="email"],
+  .reject-post #patient-edit input[type="password"],
+  .reject-post #patient-edit label {
   width: 100%;
   max-width: 100%;
 }
 
-.doctor-registration .login-remember label, .doctor-login .login-remember label, .submission-edit .login-remember label {
+.doctor-registration .login-remember label, .doctor-login .login-remember label, .submission-edit .login-remember label, .reject-post .login-remember label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18335,12 +18361,13 @@ header .logo-cont {
 
 .doctor-registration .login-remember label,
   .doctor-login .login-remember label,
-  .submission-edit .login-remember label {
+  .submission-edit .login-remember label,
+  .reject-post .login-remember label {
   width: 322px;
   max-width: 100%;
 }
 
-.doctor-registration #wp-submit, .doctor-login #wp-submit, .submission-edit #wp-submit {
+.doctor-registration #wp-submit, .doctor-login #wp-submit, .submission-edit #wp-submit, .reject-post #wp-submit {
   --tw-bg-opacity: 1;
   background-color: rgba(251, 83, 115, var(--tw-bg-opacity));
   border-radius: 0.25rem;
@@ -18361,7 +18388,8 @@ header .logo-cont {
 
 .doctor-registration .select,
   .doctor-login .select,
-  .submission-edit .select {
+  .submission-edit .select,
+  .reject-post .select {
   position: relative;
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
           box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
@@ -18370,7 +18398,7 @@ header .logo-cont {
   height: 42px;
 }
 
-.doctor-registration .select, .doctor-login .select, .submission-edit .select {
+.doctor-registration .select, .doctor-login .select, .submission-edit .select, .reject-post .select {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18382,7 +18410,8 @@ header .logo-cont {
 
 .doctor-registration .select:after,
     .doctor-login .select:after,
-    .submission-edit .select:after {
+    .submission-edit .select:after,
+    .reject-post .select:after {
   content: url("/wp-content/themes/template/build/images/select-caret.svg");
   position: absolute;
   right: 15px;
@@ -18394,7 +18423,8 @@ header .logo-cont {
 
 .doctor-registration .select select,
     .doctor-login .select select,
-    .submission-edit .select select {
+    .submission-edit .select select,
+    .reject-post .select select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
