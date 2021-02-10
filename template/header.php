@@ -45,6 +45,14 @@
             <?php $logout = get_site_url(); ?>
             <li><a href="<?php echo wp_logout_url($logout); ?>">Log out</a></li>
           </ul>
+        <?php elseif (current_user_can('administrator')) : ?>
+          <ul class="logged-in-dropdown">
+            <li><a href="/admin-dashboard"><?php echo wp_get_current_user()->user_login; ?></a></li>
+            <li><a href="/admin-dashboard">Dashboard</a></li>
+            <li><a href="/admin-messages">Messages</a></li>
+            <?php $logout = get_site_url(); ?>
+            <li><a href="<?php echo wp_logout_url($logout); ?>">Log out</a></li>
+          </ul> 
         <?php else : ?>
           <ul class="flex">
             <li class="mr-2 border-r pr-2"><a href="/login">Login</a></li>

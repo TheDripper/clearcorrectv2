@@ -37,7 +37,11 @@ foreach ($_POST as $key => $value) {
         <p class="text-3xl text-center mb-6">The following submission has been sent for approval:</p>
         <h1 class="text-pink text-center mb-6"><?php echo $submitted; ?></h1>
         <div class="max-w-xl mx-auto text-center mb-6"><?php the_content(); ?></div>
-        <a href="/doctor-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+        <?php if(current_user_can('author')): ?>
+          <a href="/doctor-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+          <?php else: ?>
+            <a href="/patient-dashboard" class="button py-2 max-w-xs mx-auto invert">RETURN TO DASHBOARD</a>
+            <?php endif; ?>
       </div>
     </article>
   </section>
