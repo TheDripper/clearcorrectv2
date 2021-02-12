@@ -43,12 +43,12 @@ $patient_posts = get_posts($patient_args);
             </div>
             <div class="tabs admin-tabs">
               <ul>
-                <li><a href="#submissions" data-id-label="submissions">Submissions</a></li>
-                <li><a href="#patient-posts" data-id-label="patient-posts">Patient Posts</a></li>
-                <li><a href="#users" data-id-label="user">Users</a></li>
-                <li><a href="#assignments" data-id-label="staff">Assignments</a></li>
+                <li><a href="#submissions" data-tab-slug="submissions">Submissions</a></li>
+                <li><a href="#patient-posts" data-tab-slug="patient-posts">Patient Posts</a></li>
+                <li><a href="#users" data-tab-slug="user">Users</a></li>
+                <li><a href="#assignments" data-tab-slug="staff">Assignments</a></li>
               </ul>
-              <div id="submissions" >
+              <div id="submissions">
                 <div class="table-wrap">
                   <table class="datatable w-full submissions-table">
                     <thead>
@@ -113,16 +113,16 @@ $patient_posts = get_posts($patient_args);
                     <tbody>
                       <?php foreach ($patient_posts as $case) : ?>
                         <?php $id = $case->ID; ?>
+                        <?php $patient = get_user_by('id', get_post($id)->post_author); ?>
+                        <?php $patient_email = $patient->user_email; ?>
+                        <?php $patient_ID = $patient->ID; ?>
                         <?php $patient = wp_get_object_terms($id, 'gender')[0]->name . get_field('age', $id); ?>
-                        <tr class="border-b border-border-grey">
+                        <tr class="border-b border-border-grey" data-author=<?php echo $patient_ID; ?>>
                           <td class="py-4"><?php echo $id; ?></td>
                           <td class="py-4"><?php echo wp_date('m/d/Y', get_post_timestamp($id)); ?></td>
-                          <?php $patient = get_user_by('id', get_post($id)->post_author); ?>
-                          <?php $patient_email = $patient->user_email; ?>
-                          <?php $patient_ID = $patient->ID; ?>
                           <td class="py-4"><?php echo $patient_email; ?></td>
                           <td class="py-4"><?php echo $patient_ID; ?></td>
-                          <?php $region = get_field('country','user_'.$patient_ID); ?>
+                          <?php $region = get_field('country', 'user_' . $patient_ID); ?>
                           <td class="py-4"><?php echo $region; ?></td>
                           <td class="py-4"><?php echo $case->post_status; ?>
                           <td class="py-4">
@@ -160,10 +160,20 @@ $patient_posts = get_posts($patient_args);
                         <tr class="border-b border-border-grey">
                           <td class="py-4"><?php echo $user->user_email; ?></td>
                           <td class="py-4"><?php echo wp_date('m/d/Y', get_post_timestamp()); ?></td>
-                          <td class="py-4"><select name="user_role"  id="role-select">
-                              <option value="author">Doctor</option>
-                              <option value="contributor">Patient</option>
-                              <option value="administrator">Admin</option>
+                          <?php $user_role = $user->roles[0]; ?>
+                          <?php
+                          $roles = [
+                            'author',
+                            'contributor',
+                            'administrator'
+                          ];
+                          ?>
+                          <td class="py-4"><select name="user_role" class="role-select" data-user="<?php echo $user->ID; ?>" data-role="<?php echo $user_role; ?>">>
+                          <?php foreach($roles as $role): ?>
+                            <?php echo $role; ?>
+                            <?php echo $user_role; ?>
+                              <option <?php if ($role == $user_role) echo 'selected'; ?>><?php echo $role; ?></option>
+                              <?php endforeach; ?>
                             </select></td>
                           <td class="py-4">
                             <a class="publish text-sm mx-2" href="#">DELETE</a>

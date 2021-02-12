@@ -1129,8 +1129,14 @@ add_action('wp_ajax_doctor_patient_admin', 'doctor_patient_admin');
 
 function doctor_patient_admin()
 {
-  $u = new WP_User($_POST['user']);
-  $u->add_role($_POST['role']);
-  var_dump($u);
+  $user = $_POST['user'];
+  $role = $_POST['role'];
+  $old_role = $_POST['old_row'];
+  $u = get_user_by('id',$user);
+  echo $role;
+  wp_update_user(array(
+    'ID'=>$user,
+    'role'=>$role
+  ));
   wp_die();
 }
