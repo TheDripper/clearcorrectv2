@@ -29,7 +29,7 @@ foreach ($_POST as $key => $value) {
   }
 }
 ?>
-<main role="main" aria-label="Content" class="bg-back-grey pt-8">
+<main role="main" aria-label="Content" class="bg-back-grey py-8">
   <!-- section -->
   <section>
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

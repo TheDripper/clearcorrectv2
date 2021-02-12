@@ -29,7 +29,7 @@ $patient_posts = get_posts($patient_args);
             </div>
           <?php endif; ?>
           <div class="bg-white border border-border-grey max-w-6xl mx-auto p-6">
-            <h2 class="text-pink mb-6">Dashboard</h2>
+            <h2 class="text-pink mb-6">Admin Dashboard</h2>
             <div class="select relative before-tabs">
               <select id="admin-filter-cases" class="border border-border-grey rounded px-2 absolute z-10">
                 <option>All Posts</option>
@@ -43,10 +43,10 @@ $patient_posts = get_posts($patient_args);
             </div>
             <div class="tabs admin-tabs">
               <ul>
-                <li><a href="#submissions" data-tab-slug="submissions">Submissions</a></li>
-                <li><a href="#patient-posts" data-tab-slug="patient-posts">Patient Posts</a></li>
-                <li><a href="#users" data-tab-slug="user">Users</a></li>
-                <li><a href="#assignments" data-tab-slug="staff">Assignments</a></li>
+                <li class="uppercase"><a href="#submissions" data-tab-slug="submissions">Submissions</a></li>
+                <li class="uppercase"><a href="#patient-posts" data-tab-slug="patient-posts">Patient Posts</a></li>
+                <li class="uppercase"><a href="#users" data-tab-slug="user">Users</a></li>
+                <li class="uppercase"><a href="#assignments" data-tab-slug="staff">Assignments</a></li>
               </ul>
               <div id="submissions">
                 <div class="table-wrap">
@@ -163,16 +163,16 @@ $patient_posts = get_posts($patient_args);
                           <?php $user_role = $user->roles[0]; ?>
                           <?php
                           $roles = [
-                            'author',
-                            'contributor',
-                            'administrator'
+                            'author' => 'Patient',
+                            'contributor' => 'Doctor',
+                            'administrator' => 'Admin'
                           ];
                           ?>
                           <td class="py-4"><select name="user_role" class="role-select" data-user="<?php echo $user->ID; ?>" data-role="<?php echo $user_role; ?>">>
-                          <?php foreach($roles as $role): ?>
-                            <?php echo $role; ?>
-                            <?php echo $user_role; ?>
-                              <option <?php if ($role == $user_role) echo 'selected'; ?>><?php echo $role; ?></option>
+                          <?php foreach($roles as $slug => $role): ?>
+                          <?php echo $slug; ?>
+                          <?php echo $user_role; ?>
+                              <option <?php if ($slug == $user_role) echo 'selected'; ?> value="<?php echo $slug ?>"><?php echo ucwords($role); ?></option>
                               <?php endforeach; ?>
                             </select></td>
                           <td class="py-4">
@@ -181,7 +181,7 @@ $patient_posts = get_posts($patient_args);
                               <div class="flex flex-col justify-center text-center">
                                 <p class="text-xl">Are you sure you want to delete the following user?</p>
                                 <h1 class="text-pink my-12"><?php echo $user->ID; ?></h1>
-                                <a class="button py-2 w-full max-w-md mx-auto mb-2" href="/case-published?id=<?php echo $id; ?>">DELETE USER</a>
+                                <a class="button py-2 w-full max-w-md mx-auto mb-2" href="/user-deleted?id=<?php echo $id; ?>">DELETE USER</a>
                                 <a class="button py-2 w-full max-w-md mx-auto invert" href="#">Cancel</a>
                               </div>
                             </div>

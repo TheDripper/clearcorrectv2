@@ -1131,7 +1131,7 @@ function doctor_patient_admin()
 {
   $user = $_POST['user'];
   $role = $_POST['role'];
-  $old_role = $_POST['old_row'];
+  $old_role = $_POST['old_role'];
   $u = get_user_by('id',$user);
   echo $role;
   wp_update_user(array(

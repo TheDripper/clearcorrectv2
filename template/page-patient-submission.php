@@ -46,10 +46,10 @@ if (!function_exists('wp_handle_upload')) {
                     <label class="text-h5-grey uppercase text-xs font-bold flex justify-between">Before / After Image<a href="#" class="modal-link text-xs font-body">What is this?</a></label>
                     <div class="modal">
                       <div class="text-center p-12 flex flex-col items-center">
-                        <img src="<?php echo get_template_directory_uri() . '/build/images/layout.jpg' ?>" <p>Precompose before and after photos into a single image before uploading. An easy way to do this is by using the mobile app Layout by Instagram that is available for free on the Apple App Store and on Google play.
+                        <img class="insta-modal" src="<?php echo get_template_directory_uri() . '/build/images/layout.jpg' ?>" <p>Precompose before and after photos into a single image before uploading. An easy way to do this is by using the mobile app Layout by Instagram that is available for free on the Apple App Store and on Google play.
                         <div class="flex w-2/3 justify-between mx-auto mt-8">
-                          <img class="mr-8" src="<?php echo get_template_directory_uri() . '/build/images/AppStore.png' ?>" />
-                          <img src="<?php echo get_template_directory_uri() . '/build/images/GoogleStore.png' ?>" />
+                          <img class="mr-8 insta-modal" src="<?php echo get_template_directory_uri() . '/build/images/AppStore.png' ?>" />
+                          <img class="insta-modal" src="<?php echo get_template_directory_uri() . '/build/images/GoogleStore.png' ?>" />
                         </div>
                         <p class="text-h5-grey">Only .JPG and .PNG files under 4mb are supported.</p>
                       </div>
