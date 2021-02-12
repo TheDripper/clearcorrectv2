@@ -856,9 +856,7 @@ function filter_cases()
   $current_user = wp_get_current_user();
   $gender = (array) get_terms('gender', array('hide_empty' => false))[0];
   $classification = (array) get_terms('classification', array('hide_empty' => false))[0];
-  $tax = '';
-  if (in_array($_POST["slug"], $gender)) $tax = 'gender';
-  if (in_array($_POST["slug"], $classification)) $tax = 'classification';
+  $tax = $_POST['tax'];
   $args = array(
     'author'        =>  $current_user->ID,
     'orderby' => 'post_date',
@@ -916,6 +914,9 @@ function filter_cases()
 }
 add_action('wp_ajax_nopriv_filter_cases', 'filter_cases');
 add_action('wp_ajax_filter_cases', 'filter_cases');
+
+
+
 add_action('wp_login_failed', 'my_front_end_login_fail');  // hook failed login
 
 function my_front_end_login_fail($username)
@@ -991,20 +992,145 @@ function set_first_login()
 add_action('wp_ajax_nopriv_load_more_cases', 'load_more_cases');
 add_action('wp_ajax_load_more_cases', 'load_more_cases');
 
-function load_more_cases() {
+function load_more_cases()
+{
   $offset = $_POST['offset'];
-$args = array(
-  'post_type' => 'case',
-  'posts_per_page' => 10,
-  'post_status' => 'publish',
-  'offset' => $offset
-);
-global $post;
-$q = new WP_Query($args);
-while ($q->have_posts()) : $q->the_post() ?>
-  <?php get_template_part('content', 'case'); ?>
+  $args = array(
+    'post_type' => 'case',
+    'posts_per_page' => 10,
+    'post_status' => 'publish',
+    'offset' => $offset
+  );
+  global $post;
+  $q = new WP_Query($args);
+  while ($q->have_posts()) : $q->the_post() ?>
+    <?php get_template_part('content', 'case'); ?>
+  <?php
+  endwhile;
+  wp_reset_postdata();
+  wp_die();
+}
+
+function admin_filter_cases()
+{
+  $current_user = wp_get_current_user();
+  $gender = (array) get_terms('gender', array('hide_empty' => false))[0];
+  $classification = (array) get_terms('classification', array('hide_empty' => false))[0];
+  $tax = $_POST['tax'];
+  $args = array(
+    'orderby' => 'post_date',
+    'order' => 'ASC',
+    'posts_per_page' => -1,
+    'post_type' => 'case',
+    'post_status' => 'any',
+    'tax_query' => array(
+      array(
+        'taxonomy' => $tax,
+        'field'    => 'slug',
+        'terms'    => $_POST['slug']
+      ),
+    ),
+  );
+  $cases = get_posts($args); ?>
+  <?php if ($_POST['tab_slug'] == 'patient-posts') : ?>
+  <div class="table-wrap">
+    <table class="datatable w-full patient-posts">
+      <thead>
+        <tr>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Submission ID</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Date Submitted</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Email</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Patient ID</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Region</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Status</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($cases as $case) : ?>
+          <?php $id = $case->ID; ?>
+          <?php $patient = wp_get_post_terms($id, 'gender')[0]->name . get_field('age', $id); ?>
+          <tr class="border-b border-border-grey">
+            <td class="py-4"><?php echo $id; ?></td>
+            <td class="py-4"><?php echo wp_date('m/d/Y', get_post_timestamp($id)); ?></td>
+            <td class="py-4"><?php echo $current_user->user_email; ?></td>
+            <td class="py-4"><?php echo $case->post_title; ?></td>
+            <td class="py-4"><?php echo wp_get_post_terms($id, 'region')[0]->name; ?></td>
+            <td class="py-4"><?php echo $case->post_status; ?></td>
+            <td class="py-4"><a class="text-sm mx-2" href="/submission-edit?id=<?php echo $id; ?>">EDIT</a>|<a class="text-sm mx-2 delete" href="/submission-delete?id=<?php echo $id; ?>">DELETE</a>
+              <div class="modal message p-8">
+                <div class="flex flex-col justify-center text-center">
+                  <p class="text-xl">Are you sure you want to delete the following submission?</p>
+                  <h1 class="text-pink my-12"><?php echo $case->ID; ?></h1>
+                  <p class="w-full max-w-lg mx-auto mb-6">Once deleted there is no way to recover this submission from our system. If it was previously published to the ClearCorrect case gallery it will be removed within 24 hours. </p>
+                  <a class="button py-2 w-full max-w-md mx-auto mb-2" href="/submission-delete?id=<?php echo $id; ?>">Delete Submission</a>
+                  <a class="button py-2 w-full max-w-md mx-auto invert" href="/submission-delete">Cancel</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+  <?php else : ?>
+    <table class="datatable w-full submissions-table">
+      <thead>
+        <tr>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Submission ID</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Date Submitted</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Doctor</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">User #</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Patient ID</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Region</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Status</th>
+          <th class="text-h5-grey uppercase text-xs font-bold cursor-pointer">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($cases as $case) : ?>
+          <?php $id = $case->ID; ?>
+          <?php $patient = wp_get_object_terms($id, 'gender')[0]->name . get_field('age', $id); ?>
+          <tr class="border-b border-border-grey">
+            <td class="py-4"><?php echo $id; ?></td>
+            <td class="py-4"><?php echo wp_date('m/d/Y', get_post_timestamp()); ?></td>
+            <?php $doctor_email = get_user_by('id', get_post($id)->post_author)->user_email; ?>
+            <td class="py-4"><?php echo $doctor_email; ?></td>
+            <td class="py-4"><?php echo $current_user->ID; ?></td>
+            <td class="py-4"><?php echo get_field('patient_case_number', $case->ID) ?></td>
+            <?php $region = wp_get_object_terms($case->ID, 'region')[0]->name; ?>
+            <td class="py-4"><?php echo $region; ?></td>
+            <td class="py-4"><?php echo $case->post_status; ?>
+            <td class="py-4">
+              <a class="publish text-sm mx-2" href="#">PUBLISH</a>|<a class="text-sm mx-2" href="/case-reject?id=<?php echo $id; ?>">REJECT</a>
+              <div class="modal publish-modal message p-8">
+                <div class="flex flex-col justify-center text-center">
+                  <p class="text-xl">Are you sure you want to publish the following submission?</p>
+                  <h1 class="text-pink my-12"><?php echo $case->ID; ?></h1>
+                  <a class="button py-2 w-full max-w-md mx-auto mb-2" href="/case-published?id=<?php echo $id; ?>">Publish</a>
+                  <a class="button py-2 w-full max-w-md mx-auto invert" href="#">Cancel</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php endif; ?>
+
 <?php
-endwhile;
-wp_reset_postdata();
-wp_die();
+  wp_die();
+}
+add_action('wp_ajax_nopriv_admin_filter_cases', 'admin_filter_cases');
+add_action('wp_ajax_admin_filter_cases', 'admin_filter_cases');
+
+add_action('wp_ajax_nopriv_doctor_patient_admin', 'doctor_patient_admin');
+add_action('wp_ajax_doctor_patient_admin', 'doctor_patient_admin');
+
+function doctor_patient_admin()
+{
+  $u = new WP_User($_POST['user']);
+  $u->add_role($_POST['role']);
+  var_dump($u);
+  wp_die();
 }

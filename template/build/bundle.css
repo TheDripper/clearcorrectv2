@@ -19312,6 +19312,67 @@ header .logo-cont {
   margin-bottom: 0 !important;
 }
 
+.tabs ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-bottom: 2px solid #cdcdce;
+}
+
+.tabs ul li {
+  width: 185px !important;
+  height: 60px !important;
+  background: #cdcdce;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.tabs ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: Geomanist-bold;
+  height: 100%;
+  --tw-text-opacity: 1;
+  color: rgba(151, 151, 151, var(--tw-text-opacity));
+  width: 100%;
+}
+
+.tabs ul li.ui-state-active {
+  background: #ffffff !important;
+  border: 2px solid #cdcdce;
+  border-bottom: 2px solid transparent !important;
+}
+
+.before-tabs select {
+  margin-top: 90px;
+}
+
+.admin-dashboard .table-wrap {
+  padding-top: 30px;
+}
+
+.admin-dashboard .dataTables_filter {
+  margin-bottom: 2rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
